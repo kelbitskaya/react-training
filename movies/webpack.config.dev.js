@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dev')
+    path: path.resolve(__dirname, './dist')
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -28,33 +28,24 @@ module.exports = {
       chunks: 'all',
     },
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html'
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[name].css'
-    })
-  ],
+
   module: {
     rules: [
       {
         enforce: 'pre',
-        test: /\.(js)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: 'eslint-loader'
+        loader: 'eslint-loader',
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: { attrs: false }
-          }
-        ]
+        loader: 'html-loader',
       },
       {
         test: /\.scss$/,
@@ -75,5 +66,17 @@ module.exports = {
         ],
       }
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      hash: true,
+      filename: 'index.html',
+      template: 'src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[name].css'
+    })
+  ],
 };
