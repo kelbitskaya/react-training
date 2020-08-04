@@ -53,7 +53,6 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-            options: { attrs: false }
           }
         ]
       },
