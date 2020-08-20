@@ -4,6 +4,7 @@
   "dependencies": {
     "core-js-compat": "^3.4.7",
     "jest": "^26.2.2",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -29,6 +30,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
     "eslint": "^7.6.0",
+    "eslint-auto-fix": "^1.0.3",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.22.0",

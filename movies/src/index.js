@@ -1,7 +1,10 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/scss/main.scss';
+import App from './components/app';
 
-const App = React.createElement('p', null, 'I`m puppy');
+const root = document.getElementById('root');
 
-ReactDOM.render(App, document.getElementById('root'));
+ReactDOM.render(<App/>, root);
+/* eslint-enable */

@@ -1,0 +1,22 @@
+.filters {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 2px solid $color-grey-light;
+  box-shadow: 0 4px 2px -2px #000;
+  margin-top: 30px;
+}
+
+
+.genre-filter {
+  list-style: none;
+  margin-left: 0;
+  display: flex;
+}
+
+.genre-filter__item {
+  margin-right: 20px;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+}

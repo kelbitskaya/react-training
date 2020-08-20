@@ -1,11 +1,10 @@
+@import './normalize';
+@import './variables';
+@import './base';
+@import './componets/header';
+@import './componets/footer';
+@import './componets/movieCard';
+@import './componets/movieList';
+@import './componets/filter';
+@import './componets/dropdown';
 
-body {
-  margin: 30px auto;
-  width: 1200px;
-}
-
-p {
-  color: green;
-  font-size: 3rem;
-  font-weight: bold;
-}

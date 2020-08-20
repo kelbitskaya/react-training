@@ -1,0 +1,23 @@
+header {
+  background-image: url('https://sun9-49.userapi.com/c857016/v857016821/1fd1fd/kvTiRCFAz5U.jpg');
+  padding-top: 30px;
+  min-height: 450px;
+  border-bottom: 15px solid $color-grey-light;
+
+  >div {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  .header-line {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 5.2rem;
+    text-transform: uppercase;
+    font-weight: 100;
+    opacity: 0.8;
+  }
+}
