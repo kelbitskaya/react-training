@@ -12,11 +12,40 @@
   list-style: none;
   margin-left: 0;
   display: flex;
+  max-width: 200px;
+  flex-wrap: wrap;
+
+  @include for-tablet-landscape-up {
+    max-width: 100%;
+  }
 }
 
 .genre-filter__item {
   margin-right: 20px;
   font-size: 2.1rem;
   text-transform: uppercase;
-  opacity: 0.6;
+  color: rgba($color-light, 0.6);
+
+  &:hover {
+    cursor: pointer;
+    color: rgba($color-light, 1);
+  }
+
+  &.active {
+    position: relative;
+    color: $color-pink;
+    @include for-tablet-landscape-up  {
+      color: rgba($color-light, 0.6);
+      &:after {
+        content: '';
+        display: block;
+        border-bottom: 2px solid $color-pink;
+        color: rgba($color-pink, 1);
+        position: absolute;
+        bottom: -22px;
+        height: 2px;
+        width: 100%;
+      }
+    }
+  }
 }

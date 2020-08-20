@@ -5,8 +5,13 @@ header {
   border-bottom: 15px solid $color-grey-light;
 
   >div {
-    width: 1200px;
+    width: auto;
+    padding: 0 30px;
     margin: 0 auto;
+
+    @include for-desktop-up {
+      width: 1200px;
+    }
   }
 
   .header-line {
