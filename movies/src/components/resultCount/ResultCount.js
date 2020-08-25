@@ -6,7 +6,7 @@ export default function ResultCount(props) {
   return (
     <div className="result-count">
       <strong>{count}</strong>
-      <span> movies founded</span>
+      <span className="result-count__text"> movies founded</span>
     </div>
   );
 }

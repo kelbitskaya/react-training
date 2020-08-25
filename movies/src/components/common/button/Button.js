@@ -12,5 +12,5 @@ export default function Button(props) {
 
 Button.propTypes = {
   className: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
 };

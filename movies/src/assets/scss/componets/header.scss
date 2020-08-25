@@ -1,10 +1,12 @@
-header {
+@import '../componets/dropdown';
+
+.header {
   background-image: url('https://sun9-49.userapi.com/c857016/v857016821/1fd1fd/kvTiRCFAz5U.jpg');
   padding-top: 30px;
   min-height: 450px;
   border-bottom: 15px solid $color-grey-light;
 
-  >div {
+  >.header__content {
     width: auto;
     padding: 0 30px;
     margin: 0 auto;
@@ -14,12 +16,12 @@ header {
     }
   }
 
-  .header-line {
+  &-line {
     display: flex;
     justify-content: space-between;
   }
 
-  h1 {
+  &__title {
     font-size: 5.2rem;
     text-transform: uppercase;
     font-weight: 100;

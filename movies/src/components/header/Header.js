@@ -1,21 +1,21 @@
 import React from 'react';
 import Logo from '../common/Logo';
+import Search from '../search/Search';
 import Button from '../common/button/Button';
 
 export default function Header() {
   return (
-    <header>
-      <div>
+    <header className="header">
+      <div className="header__content">
         <div className="header-line">
           <Logo />
           <Button className="button" title="+ Add movie" />
         </div>
         <div className="movie-search">
-          <h1>find your movie</h1>
-          <div className="movie-search__line">
-            <input type="text" name="movie" className="movie-search__input" placeholder="What do you want to watch?" />
-            <Button className="button button_search" title="Search" />
-          </div>
+          <h1 className="header__title">find your movie</h1>
+          <Search
+            placeholder="What do you want to watch?"
+          />
         </div>
       </div>
     </header>

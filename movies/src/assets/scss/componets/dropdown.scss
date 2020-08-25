@@ -18,7 +18,7 @@
     border-color: #f65260 transparent transparent transparent;
   }
 
-  &:hover {
+  &__open {
     &:after {
       border-width: 0 7.5px 13.0px 7.5px;
       border-color: transparent transparent #f65260 transparent;
@@ -42,24 +42,23 @@
   margin-top: 5px;
 }
 
-.dropdown-content p {
-  color: rgba($color-light, 0.8);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 1.6rem;
-  margin-top: 10px;
+.dropdown-content {
+  &__item {
+    color: rgba($color-light, 0.8);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 10px;
 
-  &:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      background-color: $color-grey-light;
+    }
   }
 }
 
-.dropdown-content p:hover {
-  background-color: $color-grey-light;
-}
-
-.dropdown:hover .dropdown-content {
+.dropdown-content__shown {
   display: block;
 }
 
@@ -74,8 +73,7 @@
     max-width: 100%;
   }
 
-
-  >p {
+  >.sort-by__text {
     margin-right: 20px;
     opacity: 0.5;
   }

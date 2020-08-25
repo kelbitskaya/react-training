@@ -1,3 +1,5 @@
+@import '../componets/movieCard';
+
 .movie-list {
   display: flex;
   flex-direction: column;
@@ -12,14 +14,13 @@
   }
 }
 
-
 .result-count {
   width: 100%;
   margin: 30px 0 10px;
   opacity: 0.6;
   font-size: 2.2rem;
 
-  >span {
+  &__text {
     opacity: 0.8;
   }
 }

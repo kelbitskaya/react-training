@@ -6,7 +6,7 @@ const filters = ['release date', 'title'];
 export default function SortBy() {
   return (
     <div className="sort-by">
-      <p>sort by</p>
+      <p className="sort-by__text">sort by</p>
       <Dropdown options={filters} />
     </div>
   );

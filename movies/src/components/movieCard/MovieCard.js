@@ -7,28 +7,21 @@ export default function MovieCard(props) {
   } = props;
   return (
     <div className="movie-card">
-      <img src={src} alt="" className="movie-card__img" />
+      <img src={src} alt={title} className="movie-card__img" />
       <div className="movie-card__info">
-        <div className="movie-card__title">
-          <h3>{title}</h3>
-          <p>{description}</p>
+        <div className="movie-card__title-wrap">
+          <h3 className="movie-card__title">{title}</h3>
+          <p className="movie-card__descrp">{description}</p>
         </div>
-        <p className="movie-card__year"><span>{year}</span></p>
+        <p className="movie-card__year">{year}</p>
       </div>
     </div>
   );
 }
 
 MovieCard.propTypes = {
-  title: PropTypes.string,
-  src: PropTypes.string,
-  description: PropTypes.string,
-  year: PropTypes.string,
-};
-
-MovieCard.defaultProps = {
-  title: 'Just a Perfect Movie',
-  src: 'https://sun9-16.userapi.com/c857420/v857420937/235f67/l2EDojYXelQ.jpg',
-  description: 'The best genre',
-  year: '2020',
+  title: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
 };

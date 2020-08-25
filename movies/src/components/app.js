@@ -7,15 +7,13 @@ import Filters from './filter/Filters';
 
 export default function App() {
   return (
-    <>
+    <ErrorBoundary>
       <Header />
-      <ErrorBoundary>
-        <div className="content">
-          <Filters />
-          <MovieList />
-        </div>
-      </ErrorBoundary>
+      <div className="content">
+        <Filters />
+        <MovieList />
+      </div>
       <Footer />
-    </>
+    </ErrorBoundary>
   );
 }

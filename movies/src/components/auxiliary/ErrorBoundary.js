@@ -1,25 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ErrorBoundary(props) {
-  const OoopsText = () => (
-    <h2>
-      Ooops, something went wrong...
-    </h2>
-  );
+/* eslint-disable */
+export default class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null, errorInfo: null };
+  }
 
-  const isEverythingOK = true;
-  /* eslint-disable */
-  return (
-    <>
-      { isEverythingOK ? props.children : <OoopsText />}
-    </>
-  );
-  /* eslint-enable */
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+    });
+  }
+
+  render() {
+    const { children } = this.props;
+    const { errorInfo } = this.state;
+    if (errorInfo) {
+      return (
+        <h2>Something went wrong.</h2>
+      );
+    }
+
+    return children;
+  }
 }
-
-export default ErrorBoundary;
 
 ErrorBoundary.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+/* eslint-enable */
