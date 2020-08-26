@@ -9,36 +9,59 @@ class Dropdown extends React.Component {
       selected: 0,
     };
   }
-  /* eslint-disable */
+
   toggleDropdown() {
+    const { active } = this.state;
     this.setState({
-      active: !this.state.active,
+      active: !active,
     });
+  }
+
+  handleClick(index) {
+    this.setState({
+      selected: index,
+      active: false,
+    });
+  }
+
+  renderOptions() {
+    const { options } = this.props;
+    return options.map((item, index) => (
+      <li
+        role="presentation"
+        className="dropdown-content__item"
+        key={item.id}
+        onClick={() => this.handleClick(index)}
+        onKeyDown={() => this.handleClick(index)}
+        type="button"
+      >
+        {item}
+      </li>
+    ));
   }
 
   render() {
     const { options } = this.props;
+    const { active, selected } = this.state;
     return (
       <div className="dropdown">
         <button
-          className={`dropbtn ${(this.state.active ? 'dropbtn__open' : '')}`}
+          className={`dropbtn ${(active ? 'dropbtn__open' : '')}`}
           type="button"
           onClick={() => this.toggleDropdown()}
         >
-          {options[this.state.selected]}
+          {options[selected]}
         </button>
-        <div
-          className={`dropdown-content ${(this.state.active ? 'dropdown-content__shown' : '')}`}
+        <ul
+          className={`dropdown-content ${(active ? 'dropdown-content__shown' : '')}`}
         >
-          {options.map((item) => (
-            <p className="dropdown-content__item">{item}</p>
-          ))}
-        </div>
+          { this.renderOptions() }
+        </ul>
       </div>
     );
   }
 }
-/* eslint-enable */
+
 Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
