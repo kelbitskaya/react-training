@@ -1,7 +1,16 @@
 import React from 'react';
 import Dropdown from '../common/dropdown/Dropdown';
 
-const filters = ['release date', 'title'];
+const filters = [
+  {
+    title: 'release date',
+    id: 'f1',
+  },
+  {
+    title: 'title',
+    id: 'f2',
+  },
+];
 
 export default function SortBy() {
   return (

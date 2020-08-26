@@ -29,13 +29,13 @@ class Dropdown extends React.Component {
     return options.map((item, index) => (
       <li
         role="presentation"
-        className="dropdown-content__item"
         key={item.id}
+        className="dropdown-content__item"
         onClick={() => this.handleClick(index)}
         onKeyDown={() => this.handleClick(index)}
         type="button"
       >
-        {item}
+        {item.title}
       </li>
     ));
   }
@@ -50,7 +50,7 @@ class Dropdown extends React.Component {
           type="button"
           onClick={() => this.toggleDropdown()}
         >
-          {options[selected]}
+          {options[selected].title}
         </button>
         <ul
           className={`dropdown-content ${(active ? 'dropdown-content__shown' : '')}`}
