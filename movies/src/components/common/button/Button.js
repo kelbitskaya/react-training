@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Button(props) {
-  const { className, title } = props;
+  const { className, title, handleClick } = props;
   return (
-    <button className={className} type="button">
+    <button className={className} type="button" onClick={handleClick}>
       {title}
     </button>
   );
@@ -13,4 +13,5 @@ export default function Button(props) {
 Button.propTypes = {
   className: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
