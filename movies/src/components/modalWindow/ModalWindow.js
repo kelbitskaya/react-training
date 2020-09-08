@@ -11,7 +11,9 @@ export default function ModalWindow(props) {
         className="modal"
         overlayClassName="modal-overlay"
       >
-        <div className="modal-content">{modalContent}</div>
+        <div className="modal-content">
+          {modalContent}
+        </div>
       </Modal>
     </div>
   );

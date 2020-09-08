@@ -78,6 +78,16 @@ body {
     color: $color-light;
     margin-left: 20px;
   }
+
+  &_primary {
+    background-color: $color-pink;
+    color: $color-light;
+  }
+
+  &_secondary {
+    background: transparent;
+    border: 1px solid $color-pink;
+  }
 }
 
 .movie-search {
@@ -114,4 +124,3 @@ body {
     }
   }
 }
-

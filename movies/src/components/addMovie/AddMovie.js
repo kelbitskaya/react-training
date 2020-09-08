@@ -1,71 +1,76 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '../common/input/Input';
 import Button from '../common/button/Button';
 import Dropdown from '../common/dropdown/Dropdown';
+import Datepicker from '../common/datepicker/Datepicker';
 import CloseButton from '../closeButton/CloseButton';
-
-const genre = [
-  {
-    title: 'Documentary',
-    id: 'g1',
-  },
-  {
-    title: 'Comedy',
-    id: 'g2',
-  },
-  {
-    title: 'Horror',
-    id: 'g3',
-  },
-  {
-    title: 'Crime',
-    id: 'g4',
-  },
-];
+import MovieActionPopup from '../movieActionPopup/MovieActionPopup';
+import Constants from '../constants';
 
 export default function AddMovie(props) {
+  const [isMovieAction, isMovieActionPopup] = useState(false);
   const { handleClose } = props;
+
+  const handleSubmit = (e)=> {
+    e.preventDefault();
+    isMovieActionPopup(true);
+  };
+
   return (
     <>
       <CloseButton handleClose={handleClose}/>
-      <form>
+      <form onSubmit={handleSubmit}>
         <p className="modal-title">Add Movie</p>
         <Input
           id="movie-title"
           title="Title"
+          labelClassName="input-label"
         />
-        <Input
+        <Datepicker
           id="movie-release"
           title="Release date"
+          labelClassName="input-label"
+          value={this}
         />
         <Input
           id="movie-url"
           title="Movie url"
+          labelClassName="input-label"
         />
-        <div>
-          <Dropdown options={genre} />
+        <div className="modal-dropdown">
+          <span className="modal-label-text">Genre</span>
+          <Dropdown options={Constants.GENRE} />
         </div>
         <Input
           id="movie-overview"
           title="overview"
+          labelClassName="input-label"
         />
         <Input
           id="movie-runtime"
           title="runtime"
+          labelClassName="input-label"
         />
         <div className="add-movie-buttons">
           <Button
-            className="button"
+            className="button button_secondary"
             title="RESET"
             handleClick={() => {}}
           />
           <Button
-            className="button"
+            className="button button_primary"
             title="SUBMIT"
+            type="submit"
             handleClick={() => {}}
           />
         </div>
       </form>
+      <MovieActionPopup
+        isOpen={isMovieAction}
+        title="CONGRATULATION!"
+        message="The movie has been added successfully!"
+        handleClose={handleClose}
+      />
     </>
   )
 }

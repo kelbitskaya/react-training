@@ -1,22 +1,22 @@
 import React from 'react';
 import Dropdown from '../common/dropdown/Dropdown';
+import Constants from '../constants';
 
-const filters = [
-  {
-    title: 'release date',
-    id: 'f1',
-  },
-  {
-    title: 'title',
-    id: 'f2',
-  },
-];
+export default function SortBy(props) {
+  const { updateMovies } = props;
+  const sortBy = (sortType) => {
+    return (a, b) => a[sortType.type] > b[sortType.type] ? 1 : -1;
+  };
 
-export default function SortBy() {
+  const applySortMovies = (sortType) => {
+    const sortedMovieList = Constants.MOVIES.sort(sortBy(sortType));
+    updateMovies(sortedMovieList);
+  };
+
   return (
     <div className="sort-by">
       <p className="sort-by__text">sort by</p>
-      <Dropdown options={filters} />
+      <Dropdown options={Constants.FILTERS} updateMovies={applySortMovies}/>
     </div>
   );
 }

@@ -18,10 +18,16 @@ class Dropdown extends React.Component {
   }
 
   handleClick(index) {
+    const { options, updateMovies} = this.props;
+    const { selected } = this.state;
     this.setState({
       selected: index,
       active: false,
     });
+
+    if(updateMovies) {
+      updateMovies(options[selected]);
+    }
   }
 
   renderOptions() {
