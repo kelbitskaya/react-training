@@ -6,8 +6,7 @@ import MovieEditPopup from '../movieEditPopup/movieEditPopup';
 
 export default function MovieCard(props) {
   const {
-    title, genre, year, src, id, releaseDate, url, overview, runtime,
-    handleClose,
+    title, genre, year, src, id, releaseDate, url, overview, runtime
   } = props;
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
@@ -28,7 +27,7 @@ export default function MovieCard(props) {
       />
       <MovieEditPopup
         isOpen={editMovie}
-        handleClose={handleClose}
+        handleClose={editMoviePopup}
         title={title}
         genre={genre}
         releaseDate={releaseDate}
@@ -40,7 +39,7 @@ export default function MovieCard(props) {
       />
       <MovieDeletePopup
         isOpen={deleteMovie}
-        handleClose={handleClose}
+        handleClose={deleteMoviePopup}
       />
       <img src={src} alt={title} className="movie-card__img" />
       <div className="movie-card__info">

@@ -21,6 +21,8 @@
     background-color: $color-dark;
     padding: 40px 40px 30px;
     border: 1px solid $color-grey;
+    max-height: 1020px;
+    overflow: auto;
   }
 
   &-title {
@@ -52,6 +54,8 @@
 
       .dropbtn {
         display: block;
+        width: 100%;
+        text-align: left;
 
         &:after {
           position: absolute;
@@ -126,4 +130,9 @@
   .button {
     margin-left: 20px;
   }
+}
+
+.ReactModal__Html--open,
+.ReactModal__Body--open {
+  overflow: hidden;
 }
