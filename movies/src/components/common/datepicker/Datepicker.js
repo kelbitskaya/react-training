@@ -2,28 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Datepicker(props) {
-  const { id, title, value, onChange } = props;
-  console.log(value);
+  const {
+    id, title, value,
+  } = props;
 
   return (
-    <>
-      <label htmlFor={id}>
-        {title}
-        <input
-          className="input"
-          id={id}
-          type="date"
-          value={value}
-        />
-      </label>
-    </>
+    <label htmlFor={id}>
+      {title}
+      <input
+        className="input"
+        id={id}
+        type="date"
+        value={value}
+      />
+    </label>
   );
-
 }
 
 Datepicker.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };

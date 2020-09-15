@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import CloseButton from "../closeButton/CloseButton";
 import Modal from 'react-modal';
-import Button from "../common/button/Button";
-import Input from "../common/input/Input";
+import PropTypes from 'prop-types';
+import CloseButton from '../closeButton/CloseButton';
+import Button from '../common/button/Button';
+import Input from '../common/input/Input';
 import Dropdown from '../common/dropdown/Dropdown';
 import Datepicker from '../common/datepicker/Datepicker';
 import Constants from '../constants';
-import MovieActionPopup from "../movieActionPopup/MovieActionPopup";
+import MovieActionPopup from '../movieActionPopup/MovieActionPopup';
 
-export default function MovieEditPopup (props) {
+export default function MovieEditPopup(props) {
   const {
     title, releaseDate, url, id, overview, runtime,
     handleClose,
@@ -16,11 +17,11 @@ export default function MovieEditPopup (props) {
   } = props;
   const [isMovieAction, isMovieActionPopup] = useState(false);
 
-  const handleSubmit = (e)=> {
+  const handleSubmit = (e) => {
     e.preventDefault();
     isMovieActionPopup(true);
   };
-  return(
+  return (
     <Modal
       isOpen={isOpen}
       className="modal"
@@ -55,7 +56,7 @@ export default function MovieEditPopup (props) {
             />
             <div className="modal-dropdown">
               <span className="modal-label-text">Genre</span>
-              <Dropdown options={Constants.GENRE}/>
+              <Dropdown options={Constants.GENRE} />
             </div>
             <Input
               id="movie-overview"
@@ -95,3 +96,14 @@ export default function MovieEditPopup (props) {
     </Modal>
   );
 }
+
+MovieEditPopup.propTypes = {
+  title: PropTypes.string.isRequired,
+  releaseDate: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  runtime: PropTypes.string.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};

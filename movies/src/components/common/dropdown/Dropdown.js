@@ -18,14 +18,14 @@ class Dropdown extends React.Component {
   }
 
   handleClick(index) {
-    const { options, updateMovies} = this.props;
+    const { options, updateMovies } = this.props;
     const { selected } = this.state;
     this.setState({
       selected: index,
       active: false,
     });
 
-    if(updateMovies) {
+    if (updateMovies) {
       updateMovies(options[selected]);
     }
   }
@@ -70,6 +70,7 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.node).isRequired,
+  updateMovies: PropTypes.func.isRequired,
 };
 
 export default Dropdown;

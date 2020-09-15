@@ -1,11 +1,12 @@
 import React from 'react';
-import CloseButton from "../closeButton/CloseButton";
 import Modal from 'react-modal';
-import Button from "../common/button/Button";
+import PropTypes from 'prop-types';
+import CloseButton from '../closeButton/CloseButton';
+import Button from '../common/button/Button';
 
-export default function MovieDeletePopup (props) {
+export default function MovieDeletePopup(props) {
   const { handleClose, isOpen } = props;
-  return(
+  return (
     <Modal
       isOpen={isOpen}
       className="modal modal-confirmation"
@@ -29,3 +30,8 @@ export default function MovieDeletePopup (props) {
     </Modal>
   );
 }
+
+MovieDeletePopup.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};

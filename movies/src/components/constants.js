@@ -8,8 +8,8 @@ module.exports = {
       overview: 'overviewText',
       runtime: 'runtimeText',
       genre: [
-        "Drama",
-        "Crime"
+        'Drama',
+        'Crime',
       ],
       year: '1994',
       id: 'id3',
@@ -22,10 +22,10 @@ module.exports = {
       overview: 'overviewText',
       runtime: 'runtimeText',
       genre: [
-        "Drama",
-        "Biography",
-        "Music",
-        "Documentary"
+        'Drama',
+        'Biography',
+        'Music',
+        'Documentary',
       ],
       year: '2003',
       id: 'id2',
@@ -38,9 +38,9 @@ module.exports = {
       overview: 'overviewText',
       runtime: 'runtimeText',
       genre: [
-        "Action",
-        "Adventure",
-        "Crime"
+        'Action',
+        'Adventure',
+        'Crime',
       ],
       year: '2004',
       id: 'id1',
@@ -53,9 +53,9 @@ module.exports = {
       overview: 'overviewText',
       runtime: 'runtimeText',
       genre: [
-        "Action",
-        "Adventure",
-        "Crime"
+        'Action',
+        'Adventure',
+        'Crime',
       ],
       year: '2004',
       id: 'id4',
@@ -68,9 +68,9 @@ module.exports = {
       overview: 'overviewText',
       runtime: 'runtimeText',
       genre: [
-        "Action",
-        "Adventure",
-        "Crime"
+        'Action',
+        'Adventure',
+        'Crime',
       ],
       year: '2003',
       id: 'id5',
@@ -83,14 +83,14 @@ module.exports = {
       overview: 'overviewText',
       runtime: 'runtimeText',
       genre: [
-        "Drama",
-        "Crime"
+        'Drama',
+        'Crime',
       ],
       year: '1994',
       id: 'id6',
     },
   ],
-  GENRE : [
+  GENRE: [
     {
       title: 'all',
       id: 'g1',
@@ -123,5 +123,5 @@ module.exports = {
       type: 'title',
       id: 'f2',
     },
-  ]
+  ],
 };

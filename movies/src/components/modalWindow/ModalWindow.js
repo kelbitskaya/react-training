@@ -17,10 +17,9 @@ export default function ModalWindow(props) {
       </Modal>
     </div>
   );
-};
+}
 
 ModalWindow.propTypes = {
   modalContent: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
-

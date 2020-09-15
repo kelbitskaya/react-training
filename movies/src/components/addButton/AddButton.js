@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../common/button/Button';
 import ModalWindow from '../modalWindow/ModalWindow';
 import AddMovie from '../addMovie/AddMovie';
@@ -24,7 +24,7 @@ export default function AddButton() {
       <ModalWindow
         isOpen={isOpen}
         openModal={showPopup}
-        modalContent={<AddMovie  handleClose={hidePopup} />}
+        modalContent={<AddMovie handleClose={hidePopup} />}
       />
     </div>
   );

@@ -1,12 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import ResultCount from '../resultCount/ResultCount';
 
 export default function MoviesList(props) {
   const { movies } = props;
-  const setMovieGenre = (movie) => {
-    return movie.genre.join(', ');
-  };
+  const setMovieGenre = (movie) => movie.genre.join(', ');
   return (
     <div className="movie-list">
       <ResultCount
@@ -29,3 +28,10 @@ export default function MoviesList(props) {
     </div>
   );
 }
+
+MoviesList.propTypes = {
+  movies: PropTypes.shape({
+    length: PropTypes.number.isRequired,
+    map: PropTypes.func.isRequired,
+  }).isRequired,
+};

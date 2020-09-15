@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Input(props) {
-  const { id, title, labelClassName, value } = props;
+  const {
+    id, title, labelClassName, value,
+  } = props;
 
   return (
     <>
@@ -22,6 +24,6 @@ export default function Input(props) {
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  labelClassName: PropTypes.string,
+  labelClassName: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };

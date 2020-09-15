@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Input from '../common/input/Input';
 import Button from '../common/button/Button';
 import Dropdown from '../common/dropdown/Dropdown';
@@ -11,14 +12,14 @@ export default function AddMovie(props) {
   const [isMovieAction, isMovieActionPopup] = useState(false);
   const { handleClose } = props;
 
-  const handleSubmit = (e)=> {
+  const handleSubmit = (e) => {
     e.preventDefault();
     isMovieActionPopup(true);
   };
 
   return (
     <>
-      <CloseButton handleClose={handleClose}/>
+      <CloseButton handleClose={handleClose} />
       <form onSubmit={handleSubmit}>
         <p className="modal-title">Add Movie</p>
         <Input
@@ -72,5 +73,9 @@ export default function AddMovie(props) {
         handleClose={handleClose}
       />
     </>
-  )
+  );
 }
+
+AddMovie.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+};

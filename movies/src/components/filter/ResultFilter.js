@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Constants from '../constants';
 
 export default function ResultFilter(props) {
@@ -6,28 +7,22 @@ export default function ResultFilter(props) {
   const { updateMovies } = props;
   const [activeGenre, setActiveGenre] = useState(genres[0]);
 
-  const sortMovieList = (genre) => {
+  const sortMovieList = (movieGenre) => {
     const movieList = Constants.MOVIES;
-    if (genre.id === genres[0].id) {
-      console.log(genres);
-
-      updateMovies (movieList);
+    if (movieGenre.id === genres[0].id) {
+      updateMovies(movieList);
       setActiveGenre(genres[0]);
+    } else {
+      const currentGenre = movieGenre.title;
 
-    }
-    else  {
-      const activeGenre = genre.title;
+      const sortedMovieList = movieList.filter((movie) => movie.genre.some(
+        (genre) => genre.toLowerCase === activeGenre,
+      ));
 
-      const sortedMovieList =  movieList.filter((movie)=> {
-        let isMovieApplicable = false;
-        movie.genre.forEach((genre)=> (genre.toLowerCase() === activeGenre) && (isMovieApplicable=true));
-        return isMovieApplicable;
-      });
-
-      const activeGenreIndex = genres.findIndex(el => el.title === activeGenre);
+      const activeGenreIndex = genres.findIndex((el) => el.title === currentGenre);
       setActiveGenre(genres[activeGenreIndex]);
 
-      updateMovies (sortedMovieList);
+      updateMovies(sortedMovieList);
     }
   };
 
@@ -39,7 +34,7 @@ export default function ResultFilter(props) {
     <ul className="genre-filter">
       { Constants.GENRE.map((genre) => (
         <li
-          className={genre.title ===  activeGenre.title ? 'genre-filter__item active' : 'genre-filter__item'}
+          className={genre.title === activeGenre.title ? 'genre-filter__item active' : 'genre-filter__item'}
           key={genre.id}
           onClick={() => filterMovies(genre)}
         >
@@ -49,3 +44,7 @@ export default function ResultFilter(props) {
     </ul>
   );
 }
+
+ResultFilter.propTypes = {
+  updateMovies: PropTypes.func.isRequired,
+};

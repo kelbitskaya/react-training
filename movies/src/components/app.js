@@ -9,7 +9,7 @@ import Constants from './constants';
 export default function App() {
   const [moviesList, updateMovieList] = useState(Constants.MOVIES);
 
-  const updateData = (movies)=> {
+  const updateData = (movies) => {
     updateMovieList(movies);
   };
 
@@ -17,8 +17,8 @@ export default function App() {
     <ErrorBoundary>
       <Header />
       <div className="content">
-        <Filters  movies={moviesList} updateMovies={updateData} />
-        <MovieList movies={moviesList}/>
+        <Filters movies={moviesList} updateMovies={updateData} />
+        <MovieList movies={moviesList} />
       </div>
       <Footer />
     </ErrorBoundary>

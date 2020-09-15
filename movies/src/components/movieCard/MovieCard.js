@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MovieMenu from '../movieMenu/MovieMenu';
-import MovieDeletePopup from '../movieDeletePopup/MovieDeletePopup'
-import MovieEditPopup from '../movieEditPopup/MovieEditPopup'
+import MovieDeletePopup from '../movieDeletePopup/movieDeletePopup';
+import MovieEditPopup from '../movieEditPopup/movieEditPopup';
 
 export default function MovieCard(props) {
   const {
@@ -10,22 +10,21 @@ export default function MovieCard(props) {
     handleClose,
   } = props;
 
-  const [ deleteMovie, deleteMovieOpen ] = useState(false);
-  const [ editMovie, editMovieOpen ] = useState(false);
+  const [deleteMovie, deleteMovieOpen] = useState(false);
+  const [editMovie, editMovieOpen] = useState(false);
 
   const deleteMoviePopup = () => {
     deleteMovieOpen(!deleteMovie);
   };
   const editMoviePopup = () => {
-    debugger;
     editMovieOpen(!editMovie);
   };
 
   return (
     <div className="movie-card">
       <MovieMenu
-        deleteMovie = {() => deleteMoviePopup()}
-        editMovie = {() => editMoviePopup()}
+        deleteMovie={() => deleteMoviePopup()}
+        editMovie={() => editMoviePopup()}
       />
       <MovieEditPopup
         isOpen={editMovie}
@@ -58,6 +57,12 @@ export default function MovieCard(props) {
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  runtime: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
