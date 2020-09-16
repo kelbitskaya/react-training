@@ -6,7 +6,7 @@ import MovieEditPopup from '../movieEditPopup/movieEditPopup';
 
 export default function MovieCard(props) {
   const {
-    title, genre, year, src, id, releaseDate, url, overview, runtime
+    title, genre, year, src, id, releaseDate, url, overview, runtime,
   } = props;
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
@@ -63,5 +63,4 @@ MovieCard.propTypes = {
   runtime: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   genre: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleClose: PropTypes.func.isRequired,
 };

@@ -5,8 +5,9 @@ export default function Button(props) {
   const {
     className, title, handleClick, type,
   } = props;
+  const buttonType = type || 'button';
   return (
-    <button className={className} type={type || 'button'} onClick={handleClick}>
+    <button className={className} type={buttonType} onClick={handleClick}>
       {title}
     </button>
   );

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import ResultCount from '../resultCount/ResultCount';
 
+const setMovieGenre = (movie) => movie.genre.join(', ');
+
 export default function MoviesList(props) {
   const { movies } = props;
-  const setMovieGenre = (movie) => movie.genre.join(', ');
   return (
     <div className="movie-list">
       <ResultCount
