@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from '../common/input/Input';
 import Button from '../common/button/Button';
-import Dropdown from '../common/dropdown/Dropdown';
+import MultiSelectInput from '../common/multiSelectInput/MultiSelectInput';
 import Datepicker from '../common/datepicker/Datepicker';
 import CloseButton from '../closeButton/CloseButton';
 import MovieActionPopup from '../movieActionPopup/MovieActionPopup';
@@ -40,7 +40,7 @@ export default function AddMovie(props) {
         />
         <div className="modal-dropdown">
           <span className="modal-label-text">Genre</span>
-          <Dropdown options={Constants.GENRE} />
+          <MultiSelectInput options={Constants.GENRE} />
         </div>
         <Input
           id="movie-overview"

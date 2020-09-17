@@ -41,6 +41,10 @@
   z-index: 1;
   margin-top: 5px;
   right: 0;
+
+  .multi-select & {
+    display: block;
+  }
 }
 
 .dropdown-content {

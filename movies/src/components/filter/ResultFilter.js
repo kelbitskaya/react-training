@@ -33,7 +33,7 @@ export default function ResultFilter(props) {
   return (
     <ul className="genre-filter">
       { Constants.GENRE.map((genre) => (
-        <li>
+        <li key={genre.id}>
           <button
             type="button"
             className={genre.title === activeGenre.title ? 'genre-filter__item active' : 'genre-filter__item'}
