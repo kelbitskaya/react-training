@@ -83,3 +83,69 @@
     opacity: 0.5;
   }
 }
+.multi-select {
+  .dropdown {
+    &-container{
+      --rmsc-border: $color-grey;
+      --rmsc-bg: $color-grey;
+      --rmsc-hover: $color-grey;
+      --rmsc-selected: $color-grey;
+      background-color: $color-grey;
+      outline: none;
+      border: none;
+      color: rgba( $color-light, 0.6);
+      padding: 6px 0;
+    }
+
+    &-heading {
+      &:hover {
+        cursor: pointer;
+      }
+
+      &-dropdown-arrow {
+        &.gray {
+          color: $color-pink;
+        }
+      }
+    }
+  }
+}
+
+.item-renderer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item-renderer input {
+  width: 2rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-pink;
+  }
+}
+
+.item-renderer span {
+  color: rgba($color-light, 0.6);
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+input[type="checkbox"] + span {
+  background-image: url(https://sun2.dataix-by-minsk.userapi.com/aQWEC76fLnAEHvlhBb720vrIu_xJm_1NfSE-6Q/Cqeo5Yh0QhM.jpg);
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  background-position: 0 -52px;
+}
+input[type="checkbox"]:checked + span {
+  background-position: 0 -4px;
+}
+
+.select-panel input {
+  background-color: $color-grey-light;
+  color: rgba( $color-light, 0.6);
+}
