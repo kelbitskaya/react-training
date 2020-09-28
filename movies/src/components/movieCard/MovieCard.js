@@ -4,9 +4,10 @@ import MovieMenu from '../movieMenu/MovieMenu';
 import MovieDeletePopup from '../movieDeletePopup/movieDeletePopup';
 import MovieEditPopup from '../movieEditPopup/movieEditPopup';
 
+
 export default function MovieCard(props) {
   const {
-    title, genre, year, src, id, releaseDate, url, overview, runtime,
+    title, genre, year, src, id, releaseDate, url, overview, runtime, selectMovie, description, rating,
   } = props;
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
@@ -41,13 +42,24 @@ export default function MovieCard(props) {
         isOpen={deleteMovie}
         handleClose={deleteMoviePopup}
       />
-      <img src={src} alt={title} className="movie-card__img" />
+      <img
+        src={src}
+        alt={title}
+        className="movie-card__img"
+        role="presentation"
+        onClick={() => selectMovie(id)}
+        onKeyDown={() => selectMovie(id)} />
       <div className="movie-card__info">
         <div className="movie-card__title-wrap">
           <h3 className="movie-card__title">{title}</h3>
+          <p className="movie-card__rating">{rating}</p>
           <p className="movie-card__descrp">{genre}</p>
         </div>
-        <p className="movie-card__year">{year}</p>
+        <div className="movie-card__time">
+          <p className="movie-card__year">{year}</p>
+          <p className="movie-card__runtime">{runtime}</p>
+        </div>
+        <div className="movie-card__full-descrp">{description}</div>
       </div>
     </div>
   );
@@ -61,6 +73,9 @@ MovieCard.propTypes = {
   url: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   runtime: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
   genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectMovie: PropTypes.func.isRequired,
 };

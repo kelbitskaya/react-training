@@ -28,4 +28,82 @@
     font-weight: 100;
     opacity: 0.8;
   }
+
+  &__content {
+    .movie-card {
+      display: flex;
+      margin: 60px 0;
+
+      &:hover {
+        cursor: auto;
+      }
+
+      &__title {
+        font-size: 5rem;
+        &-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+        }
+      }
+
+      &__descrp {
+        width: 100%;
+        opacity: 1;
+        margin-top: 10px;
+      }
+
+      &__img {
+        margin-right: 30px;
+      }
+      &__rating {
+        display: block;
+        margin: 0 20px;
+        padding: 13px;
+        border-radius: 50%;
+        border: 1px solid $color-light;
+        font-size: 2.8rem;
+        min-height: 64px;
+        color: $color-green;
+      }
+
+      .menu__item,
+      .menu__item:hover {
+        opacity: 0;
+        cursor: auto;
+      }
+
+      &__year {
+        border: none;
+        padding: 0;
+        opacity: 1;
+        margin-right: 40px;
+      }
+
+      &__year,
+      &__runtime {
+        font-size: 3rem;
+        color: $color-pink;
+      }
+
+      &__full-descrp {
+        display: block;
+        opacity: 0.8;
+        max-width: 600px;
+      }
+
+      &__info {
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      &__time {
+        display: flex;
+        margin: 30px 0;
+      }
+
+      &__runtime {
+        display: block;
+      }
+    }
+  }
 }

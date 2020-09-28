@@ -88,6 +88,19 @@ body {
     background: transparent;
     border: 1px solid $color-pink;
   }
+
+  &_search-icon {
+    background-image: url("https://www.settlersgreen.com/local/img/ico_search_pink.svg");
+    width: 20px;
+    height: 20px;
+    transform: scale(1.6);
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .movie-search {

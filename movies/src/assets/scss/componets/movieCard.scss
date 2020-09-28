@@ -14,6 +14,18 @@
     }
   }
 
+  &__full-descrp {
+    display: none;
+  }
+
+  &__runtime {
+    display: none;
+  }
+
+  &__rating {
+    display: none;
+  }
+
   &__img {
     width: 300px;
     box-shadow: 0 0 10px rgba($color-light, 0.2);

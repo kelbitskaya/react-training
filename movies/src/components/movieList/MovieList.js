@@ -6,7 +6,7 @@ import ResultCount from '../resultCount/ResultCount';
 const setMovieGenre = (movie) => movie.genre.join(', ');
 
 export default function MoviesList(props) {
-  const { movies } = props;
+  const { movies, selectMovie } = props;
   return (
     <div className="movie-list">
       <ResultCount
@@ -24,6 +24,7 @@ export default function MoviesList(props) {
           key={movie.id}
           overview={movie.overview}
           runtime={movie.runtime}
+          selectMovie={selectMovie}
         />
       ))}
     </div>
@@ -35,4 +36,5 @@ MoviesList.propTypes = {
     length: PropTypes.number.isRequired,
     map: PropTypes.func.isRequired,
   }).isRequired,
+  selectMovie: PropTypes.func.isRequired,
 };

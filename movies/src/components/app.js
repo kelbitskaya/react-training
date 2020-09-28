@@ -8,17 +8,30 @@ import Constants from './constants';
 
 export default function App() {
   const [moviesList, updateMovieList] = useState(Constants.MOVIES);
+  const [isMovieSelected, selectedMovieId] = useState(0);
 
   const updateData = (movies) => {
     updateMovieList(movies);
   };
 
+  const  selectMovieById = ()=> {
+    return Constants.MOVIES.find(x => x.id === isMovieSelected);
+  };
+
+  const selectMovie = (id) => {
+    selectedMovieId(id);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <ErrorBoundary>
-      <Header />
+      <Header  selectedMovie={selectMovieById()} isMovieSelected={isMovieSelected} goHomePage={selectMovie}/>
       <div className="content">
         <Filters movies={moviesList} updateMovies={updateData} />
-        <MovieList movies={moviesList} />
+        <MovieList movies={moviesList} selectMovie={selectMovie}/>
       </div>
       <Footer />
     </ErrorBoundary>
