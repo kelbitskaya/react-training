@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import CloseButton from '../closeButton/CloseButton';
@@ -6,6 +6,9 @@ import Button from '../common/button/Button';
 
 export default function MovieDeletePopup(props) {
   const { handleClose, isOpen } = props;
+
+  useEffect(()=> handleClose, [isOpen] );
+
   return (
     <Modal
       isOpen={isOpen}

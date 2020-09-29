@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import ErrorBoundary from './auxiliary/ErrorBoundary';
 import Header from './header/Header';
 import Footer from './footer/Footer';
@@ -10,13 +10,13 @@ export default function App() {
   const [moviesList, updateMovieList] = useState(Constants.MOVIES);
   const [isMovieSelected, selectedMovieId] = useState(0);
 
-  const updateData = (movies) => {
+  const updateData = useCallback((movies) => {
     updateMovieList(movies);
-  };
+  }, [moviesList]);
 
-  const  selectMovieById = ()=> {
+  const  selectMovieById = useCallback(()=> {
     return Constants.MOVIES.find(x => x.id === isMovieSelected);
-  };
+  }, [isMovieSelected]);
 
   const selectMovie = (id) => {
     selectedMovieId(id);
