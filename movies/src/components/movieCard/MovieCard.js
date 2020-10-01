@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import MovieMenu from '../movieMenu/MovieMenu';
 import MovieDeletePopup from '../movieDeletePopup/movieDeletePopup';
@@ -13,12 +13,13 @@ export default function MovieCard(props) {
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
 
-  const deleteMoviePopup = () => {
+  const deleteMoviePopup = useCallback(() => {
     deleteMovieOpen(!deleteMovie);
-  };
-  const editMoviePopup = () => {
+  },[deleteMovie]);
+
+  const editMoviePopup = useCallback(() => {
     editMovieOpen(!editMovie);
-  };
+  },[editMovie]);
 
   return (
     <div className="movie-card">

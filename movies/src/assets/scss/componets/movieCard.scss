@@ -92,17 +92,16 @@
         height: 17px;
       }
     }
-    &__item:hover {
-      background-color: $color-pink;
-    }
 
-    &__button {
-      background: transparent;
-      border: none;
-      font-size: 1.8rem;
-      color: $color-light;
-      width: 100%;
-      text-align: left;
+    &__item {
+      &:hover {
+        background-color: $color-pink;
+      }
+
+      &_extra {
+        font-size: 1.8rem;
+        color: $color-light;
+      }
     }
   }
 }

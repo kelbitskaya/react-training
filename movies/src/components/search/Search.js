@@ -6,7 +6,7 @@ export default function Search(props) {
   const { placeholder } = props;
   return (
     <form className="movie-search__line">
-      <input type="text" name="movie" className="movie-search__input" placeholder={placeholder} />
+      <input type="text" name="movie" className="movie-search__input" placeholder={placeholder} defaultValue={placeholder} />
       <Button className="button button_search" title="Search" />
     </form>
   );

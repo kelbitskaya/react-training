@@ -1,76 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-class Dropdown extends React.Component {
-  constructor(props) {
-    super(props);
+export default function Dropdown(props) {
+  const { options, updateMovies } = props;
+  const [selectedItem, setSelectedItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(0);
 
-    this.state = {
-      selected: 0,
-    };
-  }
+  const toggleDropdown = () => {
+    setActiveItem(!activeItem);
+  };
 
-  toggleDropdown() {
-    const { active } = this.state;
-    this.setState({
-      active: !active,
-    });
-  }
-
-  handleClick(index) {
-    const { options, updateMovies } = this.props;
-    const { selected } = this.state;
-    this.setState({
-      selected: index,
-      active: false,
-    });
-
+  const handleClick = (index) => {
+    setSelectedItem(index);
+    setActiveItem(!activeItem);
     if (updateMovies) {
-      updateMovies(options[selected]);
+      updateMovies(options[selectedItem]);
     }
-  }
+  };
 
-  renderOptions() {
-    const { options } = this.props;
+  const renderOptions = () => {
     return options.map((item, index) => (
       <li
         role="presentation"
         key={item.id}
         className="dropdown-content__item"
-        onClick={() => this.handleClick(index)}
-        onKeyDown={() => this.handleClick(index)}
+        onClick={() => handleClick(index)}
+        onKeyDown={() => handleClick(index)}
         type="button"
       >
         {item.title}
       </li>
     ));
-  }
+  };
 
-  render() {
-    const { options } = this.props;
-    const { active, selected } = this.state;
-    return (
-      <div className="dropdown">
-        <button
-          className={`dropbtn ${(active ? 'dropbtn__open' : '')}`}
-          type="button"
-          onClick={() => this.toggleDropdown()}
-        >
-          {options[selected].title}
-        </button>
-        <ul
-          className={`dropdown-content ${(active ? 'dropdown-content__shown' : '')}`}
-        >
-          { this.renderOptions() }
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="dropdown">
+      <button
+        className={`dropbtn ${(activeItem ? 'dropbtn__open' : '')}`}
+        type="button"
+        onClick={() => toggleDropdown()}
+      >
+        {options[selectedItem].title}
+      </button>
+      <ul
+        className={`dropdown-content ${(activeItem ? 'dropdown-content__shown' : '')}`}
+      >
+        {renderOptions()}
+      </ul>
+    </div>
+  )
+};
 
 Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.node).isRequired,
   updateMovies: PropTypes.func.isRequired,
 };
-
-export default Dropdown;

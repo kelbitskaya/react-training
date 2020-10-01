@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2020: true,
   },
-  extends: ["airbnb", "plugin:react/recommended", "prettier", "prettier/react"],
+  extends: ["airbnb", "plugin:react/recommended", "prettier", "prettier/react", "react-app"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,6 +16,8 @@ module.exports = {
   ],
   rules: {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
   }
 };

@@ -12,19 +12,19 @@ export default function App() {
 
   const updateData = useCallback((movies) => {
     updateMovieList(movies);
-  }, [moviesList]);
+  }, []);
 
-  const  selectMovieById = useCallback(()=> {
+  const  selectMovieById = ()=> {
     return Constants.MOVIES.find(x => x.id === isMovieSelected);
-  }, [isMovieSelected]);
+  };
 
-  const selectMovie = (id) => {
+  const selectMovie = useCallback((id) => {
     selectedMovieId(id);
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-  };
+  }, [selectedMovieId]);
 
   return (
     <ErrorBoundary>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import CloseButton from '../closeButton/CloseButton';
 
@@ -6,9 +6,9 @@ export default function MovieMenu(props) {
   const { deleteMovie, editMovie } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const showMenu = () => {
+  const showMenu = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   return (
     <>
@@ -23,11 +23,21 @@ export default function MovieMenu(props) {
         : (
           <ul className="dropdown-content dropdown-content__shown">
             <CloseButton handleClose={showMenu} />
-            <li role="presentation" className="dropdown-content__item" type="button">
-              <button type="button" className="dropdown-content__button" onClick={editMovie}>Edit</button>
+            <li
+              role="presentation"
+              className="dropdown-content__item dropdown-content__item_extra"
+              type="button"
+              onClick={editMovie}
+            >
+             Edit
             </li>
-            <li role="presentation" className="dropdown-content__item" type="button">
-              <button type="button" className="dropdown-content__button" onClick={deleteMovie}>delete</button>
+            <li
+              role="presentation"
+              className="dropdown-content__item dropdown-content__item_extra"
+              type="button"
+              onClick={deleteMovie}
+            >
+              Delete
             </li>
           </ul>
         )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Button from '../common/button/Button';
 import ModalWindow from '../modalWindow/ModalWindow';
 import AddMovie from '../addMovie/AddMovie';
@@ -6,13 +6,13 @@ import AddMovie from '../addMovie/AddMovie';
 export default function AddButton() {
   const [isOpen, isShowPopup] = useState(false);
 
-  const showPopup = () => {
+  const showPopup = useCallback(() => {
     isShowPopup(!isOpen);
-  };
+  }, [isOpen]);
 
-  const hidePopup = () => {
+  const hidePopup = useCallback(() => {
     isShowPopup(false);
-  };
+  }, []);
 
   return (
     <div className="App">
