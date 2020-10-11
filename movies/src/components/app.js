@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, {useState, useCallback} from 'react';
+import {Provider} from 'react-redux';
 import ErrorBoundary from './auxiliary/ErrorBoundary';
+import store from '../store/store';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MovieList from './movieList/MovieList';
@@ -14,7 +16,7 @@ export default function App() {
     updateMovieList(movies);
   }, []);
 
-  const  selectMovieById = ()=> {
+  const selectMovieById = () => {
     return Constants.MOVIES.find(x => x.id === isMovieSelected);
   };
 
@@ -28,12 +30,14 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <Header  selectedMovie={selectMovieById()} isMovieSelected={isMovieSelected} goHomePage={selectMovie}/>
-      <div className="content">
-        <Filters movies={moviesList} updateMovies={updateData} />
-        <MovieList movies={moviesList} selectMovie={selectMovie}/>
-      </div>
-      <Footer />
+      <Provider store={store}>
+        <Header selectedMovie={selectMovieById()} isMovieSelected={isMovieSelected} goHomePage={selectMovie}/>
+        <div className="content">
+          <Filters movies={moviesList} updateMovies={updateData}/>
+          <MovieList selectMovie={selectMovie}/>
+        </div>
+        <Footer/>
+      </Provider>
     </ErrorBoundary>
   );
 }

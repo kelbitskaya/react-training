@@ -1,11 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import ResultCount from '../resultCount/ResultCount';
 
 const setMovieGenre = (movie) => movie.genre.join(', ');
 
-export default function MoviesList(props) {
+const mapStateToProps = (state) => {
+  return {movies: state}
+};
+
+const MoviesList = (props) => {
   const { movies, selectMovie } = props;
   return (
     <div className="movie-list">
@@ -29,7 +34,7 @@ export default function MoviesList(props) {
       ))}
     </div>
   );
-}
+};
 
 MoviesList.propTypes = {
   movies: PropTypes.shape({
@@ -38,3 +43,5 @@ MoviesList.propTypes = {
   }).isRequired,
   selectMovie: PropTypes.func.isRequired,
 };
+
+export default connect(mapStateToProps)(MoviesList);
