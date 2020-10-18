@@ -1,14 +1,19 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
+import { connect } from 'react-redux';
+import { fetchMovies } from '../../store/actions/actions'
 import PropTypes from 'prop-types';
 import Dropdown from '../common/dropdown/Dropdown';
 import Constants from '../constants';
 
-export default function SortBy(props) {
-  const { updateMovies } = props;
-  const sortBy = (sortType) => (a, b) => (a[sortType.type] > b[sortType.type] ? 1 : -1);
+const mapStateToProps =(state) => {
+  return {movies: state}
+};
+
+const SortBy = (props) =>  {
+  const { updateMovies, movies } = props;
 
   const applySortMovies = useCallback((sortType) => {
-    const sortedMovieList = Array.from(Constants.MOVIES).sort(sortBy(sortType));
+    const sortedMovieList = props.dispatch(fetchMovies(sortType.type));
     updateMovies(sortedMovieList);
   }, [updateMovies]);
 
@@ -18,8 +23,11 @@ export default function SortBy(props) {
       <Dropdown options={Constants.FILTERS} updateMovies={applySortMovies}/>
     </div>
   );
-}
+};
 
 SortBy.propTypes = {
   updateMovies: PropTypes.func.isRequired,
 };
+
+
+export default connect(mapStateToProps)(SortBy);

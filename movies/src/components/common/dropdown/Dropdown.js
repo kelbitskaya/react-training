@@ -14,7 +14,7 @@ export default function Dropdown(props) {
     setSelectedItem(index);
     setActiveItem(!activeItem);
     if (updateMovies) {
-      updateMovies(options[selectedItem]);
+      updateMovies(options[index]);
     }
   };
 
@@ -23,6 +23,7 @@ export default function Dropdown(props) {
       <li
         role="presentation"
         key={item.id}
+        datatype={item.type}
         className="dropdown-content__item"
         onClick={() => handleClick(index)}
         onKeyDown={() => handleClick(index)}

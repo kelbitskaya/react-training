@@ -127,13 +127,18 @@ module.exports = {
   FILTERS: [
     {
       title: 'release date',
-      type: 'year',
+      type: 'release_date',
       id: 'f1',
     },
     {
       title: 'title',
       type: 'title',
       id: 'f2',
+    },
+    {
+      title: 'rating',
+      type: 'rating',
+      id: 'f3',
     },
   ],
 };

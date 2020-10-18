@@ -28,10 +28,15 @@
 
   &__img {
     width: 300px;
+    height: 450px;
     box-shadow: 0 0 10px rgba($color-light, 0.2);
+    background-image: url("https://sun9-42.userapi.com/uXBD6XlEiPOgjLuANDAgoNBdit32iwaOLn83yQ/4mjxKmNL1Fc.jpg");
+    background-position: center;
+    background-size: cover;
 
     @include for-tablet-landscape-up {
       width: 350px;
+      height: 500px;
     }
   }
 
@@ -54,6 +59,7 @@
     font-size: 1.8rem;
     font-weight: 100;
     margin-bottom: 10px;
+    max-width: 300px;
 
     @include for-tablet-portrait-up {
       font-size: 2.2rem;
