@@ -1,20 +1,28 @@
 import React, {useCallback} from 'react';
 import { connect } from 'react-redux';
-import { fetchMovies } from '../../store/actions/actions'
+import { changeSorting } from '../../store/actions/actions';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Dropdown from '../common/dropdown/Dropdown';
 import Constants from '../constants';
 
+
 const mapStateToProps =(state) => {
-  return {movies: state}
+  return {
+    movies: state,
+    sortingType: state
+  }
+};
+
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({updateMovies: changeSorting}, dispatch)
 };
 
 const SortBy = (props) =>  {
-  const { updateMovies, movies } = props;
+  const { updateMovies, movies } = props; // updateMovies-> selected sorting
 
   const applySortMovies = useCallback((sortType) => {
-    const sortedMovieList = props.dispatch(fetchMovies(sortType.type));
-    updateMovies(sortedMovieList);
+    updateMovies(sortType.type)
   }, [updateMovies]);
 
   return (
@@ -30,4 +38,4 @@ SortBy.propTypes = {
 };
 
 
-export default connect(mapStateToProps)(SortBy);
+export default connect(mapStateToProps, matchDispatchToProps)(SortBy);

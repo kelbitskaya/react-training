@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import CloseButton from '../closeButton/CloseButton';
@@ -8,19 +10,38 @@ import Dropdown from '../common/dropdown/Dropdown';
 import Datepicker from '../common/datepicker/Datepicker';
 import Constants from '../constants';
 import MovieActionPopup from '../movieActionPopup/MovieActionPopup';
+import { editMoviesList } from '../../store/actions/actions'
+import store from '../../store/store'
 
-export default function MovieEditPopup(props) {
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({editMovieInfo: editMoviesList}, dispatch)
+};
+
+const MovieEditPopup = (props) => {
   const {
-    title, releaseDate, url, id, overview, runtime,
+    title,
+    releaseDate,
+    url,
+    id,
+    overview,
+    runtime,
     handleClose,
     isOpen,
+    editingMovie,
   } = props;
   const [isMovieAction, isMovieActionPopup] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     isMovieActionPopup(true);
+    editMovieInfo(e.target.dataset.movieId)
   };
+
+  const editMovieInfo = useCallback((movieId)=> {
+    editingMovie(movieId);
+    console.info(store.getState());
+  });
+
   return (
     <Modal
       isOpen={isOpen}
@@ -31,7 +52,7 @@ export default function MovieEditPopup(props) {
     >
       <div className="modal-content">
         <CloseButton handleClose={handleClose} />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} data-movie-id={id} >
           <p className="modal-title">Edit Movie</p>
           <div>
             <p className="modal-label-text">Movie ID</p>
@@ -76,13 +97,13 @@ export default function MovieEditPopup(props) {
             <Button
               className="button button_secondary"
               title="RESET"
-              handleClick={() => {}}
+              handleClick={handleClose}
             />
             <Button
               className="button button_primary"
               title="SAVE"
               type="submit"
-              handleClick={() => {}}
+              handleClick={editMoviesList}
             />
           </div>
         </form>
@@ -107,3 +128,6 @@ MovieEditPopup.propTypes = {
   handleClose: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
+
+
+export default connect(null, matchDispatchToProps)(MovieEditPopup);

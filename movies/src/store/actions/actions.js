@@ -37,5 +37,27 @@ export const fetchMovies = (sortBy, filter, offset, shouldUpdateState) => {
   }
 };
 
+export const changeSorting = sortingType => {
+  return {
+    type: types.CHANGE_SORTING,
+    payload: sortingType
+  }
+};
+
+export const changeFiltering = filteringType => {
+  return {
+    type: types.CHANGE_FILTERING,
+    payload: filteringType
+  }
+};
+
+export const editMoviesList = movies => {
+  console.log("EDIT_MOVIE");
+  console.info(movies);
+  return {
+    type: types.CHANGE_MOVIES_LIST,
+    payload: movies
+  }
+};
 
 store.dispatch(fetchMovies());

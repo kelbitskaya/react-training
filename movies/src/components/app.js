@@ -34,7 +34,7 @@ export default function App() {
         <Header selectedMovie={selectMovieById()} isMovieSelected={isMovieSelected} goHomePage={selectMovie}/>
         <div className="content">
           <Filters movies={moviesList} updateMovies={updateData}/>
-          <MovieList selectMovie={selectMovie}/>
+          <MovieList selectMovie={selectMovie} updateMovies={updateData}/>
         </div>
         <Footer/>
       </Provider>
