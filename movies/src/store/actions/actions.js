@@ -1,5 +1,4 @@
 import axios from "axios";
-import loaderAction from './loaderAction';
 import * as types from './actionTypes';
 import store from '../store'
 
@@ -29,7 +28,6 @@ export const fetchMovies = (sortBy, filter, offset, shouldUpdateState) => {
     axios.get(`http://localhost:4000/movies?&limit=9&sortOrder=asc${sortBy === 'title' ? '&sortBy=title' : sortBy === 'rating' ? '&sortBy=vote_average' : '&sortBy=release_date'}${filter ? `&filter=${filter}` : ''}`)
       .then(response => {
         dispatch(fetchMoviesSuccess(response.data));
-        console.log(response.data);
       })
       .catch(error => {
         dispatch(fetchMoviesFailure(error.message))

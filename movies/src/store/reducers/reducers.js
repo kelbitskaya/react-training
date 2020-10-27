@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   FETCH_MOVIES_LIST_REQUEST,
   FETCH_MOVIES_LIST_SUCCESS,
@@ -50,7 +49,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case CHANGE_MOVIES_LIST:
-      console.info(action.payload);
       return {
         ...state,
         movies: action.payload,

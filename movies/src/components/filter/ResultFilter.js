@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import PropTypes from 'prop-types';
-import Constants from '../constants';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import Constants from '../constants';
 import {changeFiltering} from "../../store/actions/actions";
 
 const mapStateToProps =(state) => {

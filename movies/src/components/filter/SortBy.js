@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
 import { connect } from 'react-redux';
-import { changeSorting } from '../../store/actions/actions';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { changeSorting } from '../../store/actions/actions';
 import Dropdown from '../common/dropdown/Dropdown';
 import Constants from '../constants';
 
@@ -35,6 +35,7 @@ const SortBy = (props) =>  {
 
 SortBy.propTypes = {
   updateMovies: PropTypes.func.isRequired,
+  movies: PropTypes.object.isRequired,
 };
 
 

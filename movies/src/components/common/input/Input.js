@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function Input(props) {
   const {
-    id, title, labelClassName, value,
+    id, title, labelClassName, value, dataTypeForm, handleInputChange, name
   } = props;
 
   return (
@@ -15,6 +15,9 @@ export default function Input(props) {
           id={id}
           className="input"
           value={value}
+          name={name}
+          data-type-form={dataTypeForm}
+          onChange={handleInputChange}
         />
       </label>
     </>

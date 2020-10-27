@@ -1,27 +1,31 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import CloseButton from '../closeButton/CloseButton';
-import Button from '../common/button/Button';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import CloseButton from '../closeButton/CloseButton';
+import Button from '../common/button/Button';
 import {editMoviesList} from "../../store/actions/actions";
-import store from '../../store/store'
 
 const matchDispatchToProps = (dispatch) => {
   return bindActionCreators({updateMovies: editMoviesList}, dispatch)
 };
 
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+  }
+};
+
 const MovieDeletePopup = (props) => {
-  const { handleClose, isOpen, id, updateMovies } = props;
+  const { handleClose, isOpen, id, updateMovies, movies } = props;
 
   Modal.setAppElement(document.getElementById('root'));
 
-  const deleteMovie = (e) => {
-    const state = store.getState();
-    const movieList = state && state.movies && state.movies.data;
-    state.movies.data = movieList.filter(movie => movie.id !== id);
-    updateMovies(state.movies);
+  const deleteMovie = () => {
+    const movieList = movies.data;
+    movies.data = movieList.filter(movie => movie.id !== id);
+    updateMovies(movies);
     handleClose();
   };
 
@@ -57,4 +61,4 @@ MovieDeletePopup.propTypes = {
 };
 
 
-export default connect(null, matchDispatchToProps)(MovieDeletePopup);
+export default connect(mapStateToProps, matchDispatchToProps)(MovieDeletePopup);

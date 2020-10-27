@@ -8,8 +8,9 @@ import MovieEditPopup from '../movieEditPopup/movieEditPopup';
 export default function MovieCard(props) {
   const {
     title, genre, year, src, id, releaseDate, url, overview, runtime, selectMovie, description, rating,
-    editingMovie
   } = props;
+
+  const [currentTitle, setCurrentTitle] = useState(title);
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
@@ -18,7 +19,11 @@ export default function MovieCard(props) {
     deleteMovieOpen(!deleteMovie);
   },[deleteMovie]);
 
-  const editMoviePopup = useCallback(() => {
+  const editMoviePopup = useCallback((a) => {
+    if(a) {
+      setCurrentTitle(a);
+    }
+    console.log(a);
     editMovieOpen(!editMovie);
   },[editMovie]);
 
@@ -39,7 +44,6 @@ export default function MovieCard(props) {
         overview={overview}
         runtime={runtime}
         id={id}
-        editingMovie={editingMovie}
       />
       <MovieDeletePopup
         isOpen={deleteMovie}
@@ -55,7 +59,7 @@ export default function MovieCard(props) {
         onKeyDown={() => selectMovie(id)} />
       <div className="movie-card__info">
         <div className="movie-card__title-wrap">
-          <h3 className="movie-card__title">{title}</h3>
+          <h3 className="movie-card__title">{currentTitle}</h3>
           <p className="movie-card__rating">{rating}</p>
           <p className="movie-card__descrp">{genre}</p>
         </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function Datepicker(props) {
   const {
-    id, title, value,
+    id, title, value, name
   } = props;
 
   return (
@@ -14,6 +14,7 @@ export default function Datepicker(props) {
         id={id}
         type="date"
         value={value}
+        name={name}
       />
     </label>
   );

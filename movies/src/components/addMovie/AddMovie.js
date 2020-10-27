@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 import Input from '../common/input/Input';
 import Button from '../common/button/Button';
 import MultiSelectInput from '../common/multiSelectInput/MultiSelectInput';
@@ -7,13 +9,36 @@ import Datepicker from '../common/datepicker/Datepicker';
 import CloseButton from '../closeButton/CloseButton';
 import MovieActionPopup from '../movieActionPopup/MovieActionPopup';
 import Constants from '../constants';
+import {editMoviesList} from "../../store/actions/actions";
 
-export default function AddMovie(props) {
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({updateMovies: editMoviesList}, dispatch)
+};
+
+const mapStateToProps = (state) => {
+  return {
+    state,
+  }
+};
+
+const AddMovie = (props) => {
+  const {state, updateMovies} = props;
+  const [currentMovies, setCurrentMovies] = useState(state.movies);
   const [isMovieAction, isMovieActionPopup] = useState(false);
   const { handleClose } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const values = Object.fromEntries(formData.entries());
+
+    const newList = [...state.movies.data, values];
+    state.movies.data = newList;
+    setCurrentMovies( state.movies);
+
+    console.log('v5', values);
+    updateMovies(currentMovies);
     isMovieActionPopup(true);
   };
 
@@ -26,17 +51,20 @@ export default function AddMovie(props) {
           id="movie-title"
           title="Title"
           labelClassName="input-label"
+          name="title"
         />
         <Datepicker
           id="movie-release"
           title="Release date"
           labelClassName="input-label"
           value={this}
+          name="release_date"
         />
         <Input
           id="movie-url"
           title="Movie url"
           labelClassName="input-label"
+          name="poster_path"
         />
         <div className="modal-dropdown">
           <span className="modal-label-text">Genre</span>
@@ -46,11 +74,13 @@ export default function AddMovie(props) {
           id="movie-overview"
           title="overview"
           labelClassName="input-label"
+          name="overview"
         />
         <Input
           id="movie-runtime"
           title="runtime"
           labelClassName="input-label"
+          name="runtime"
         />
         <div className="add-movie-buttons">
           <Button
@@ -62,7 +92,6 @@ export default function AddMovie(props) {
             className="button button_primary"
             title="SUBMIT"
             type="submit"
-            handleClick={() => {}}
           />
         </div>
       </form>
@@ -79,3 +108,5 @@ export default function AddMovie(props) {
 AddMovie.propTypes = {
   handleClose: PropTypes.func.isRequired,
 };
+
+export default connect(mapStateToProps, matchDispatchToProps)(AddMovie);

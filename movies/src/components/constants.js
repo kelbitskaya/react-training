@@ -108,19 +108,19 @@ module.exports = {
       id: 'g1',
     },
     {
-      title: 'documentary',
+      title: 'Documentary',
       id: 'g2',
     },
     {
-      title: 'comedy',
+      title: 'Comedy',
       id: 'g3',
     },
     {
-      title: 'horror',
+      title: 'Horror',
       id: 'g4',
     },
     {
-      title: 'crime',
+      title: 'Crime',
       id: 'g5',
     },
   ],

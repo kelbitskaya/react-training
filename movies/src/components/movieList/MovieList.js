@@ -7,8 +7,14 @@ import {editMoviesList, fetchMovies} from '../../store/actions/actions';
 import sortBy from '../../helpers/sortBy';
 import Constants from "../constants";
 
-const setMovieGenre = (movie) => movie.genres.join(', ');
-const setMovieYear = (movie) => +movie.release_date.substr(0, 4);
+// const setMovieGenre = (movie) => movie.genres && movie.genres.join(', ');
+const setMovieGenre = (movie) => {
+  if(Array.isArray(movie.genres)) {
+    return movie.genres.join(', ');
+  }
+  return movie.genres
+};
+const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr(0, 4);
 
 const mapStateToProps = (state) => {
   return {
@@ -30,11 +36,11 @@ const MoviesList = (props) => {
   const sortMovieList = (movieGenre, movieList) => {
     if (movieGenre === Constants.GENRE[0].title) {
       return movieList;
-    } else {
+    } 
       return movieList.filter((movie) => movie.genres.some(
         (genre) => genre.toLowerCase() === movieGenre,
       ));
-    }
+    
   };
 
   const sortedMovieList = useMemo(()=>{

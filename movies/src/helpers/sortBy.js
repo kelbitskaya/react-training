@@ -7,13 +7,13 @@ const sortBy = (sortType) => (a, b) => {
   }
 
   if(sortType === 'release_date') {
-    bandA = a['release_date'];
-    bandB = b['release_date'];
+    bandA = a.release_date;
+    bandB = b.release_date;
   }
 
   if(sortType === 'rating') {
-    bandA = a['vote_average'];
-    bandB = b['vote_average'];
+    bandA = a.vote_average;
+    bandB = b.vote_average;
   }
 
   let comparison = 0;
