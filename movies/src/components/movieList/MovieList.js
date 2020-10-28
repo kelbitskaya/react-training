@@ -37,7 +37,7 @@ const MoviesList = (props) => {
       return movieList;
     }
       return movieList.filter((movie) => movie.genres.some(
-        (genre) => genre.toLowerCase() === movieGenre,
+        (genre) => genre.toLowerCase() === movieGenre.toLowerCase(),
       ));
   };
 
