@@ -19,27 +19,8 @@ const matchDispatchToProps = (dispatch) => {
 
 const ResultFilter = (props) => {
   const genres = Constants.GENRE;
-  const { updateMovies, sortMovieList } = props;
-  const [activeGenre, setActiveGenre] = useState(genres[0]);
-
-  // const sortMovieList = (movieGenre) => {
-  //   const movieList = Constants.MOVIES;
-  //   if (movieGenre.id === genres[0].id) {
-  //     updateMovies(movieList);
-  //     setActiveGenre(genres[0]);
-  //   } else {
-  //     const currentGenre = movieGenre.title;
-  //
-  //     const sortedMovieList = movieList.filter((movie) => movie.genre.some(
-  //       (genre) => genre.toLowerCase === activeGenre,
-  //     ));
-  //
-  //     const activeGenreIndex = genres.findIndex((el) => el.title === currentGenre);
-  //     setActiveGenre(genres[activeGenreIndex]);
-  //
-  //     updateMovies(sortedMovieList);
-  //   }
-  // };
+  const { updateMovies } = props;
+  const [activeGenre] = useState(genres[0]);
 
   const filterMovies = useCallback((e) => {
     const genre = e.target.dataset && e.target.dataset.name;
@@ -67,7 +48,7 @@ const ResultFilter = (props) => {
       ))}
     </ul>
   );
-}
+};
 
 ResultFilter.propTypes = {
   updateMovies: PropTypes.func.isRequired,

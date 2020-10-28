@@ -13,7 +13,7 @@ export default function Datepicker(props) {
         className="input"
         id={id}
         type="date"
-        value={value}
+        defaultValue={value}
         name={name}
       />
     </label>
@@ -24,4 +24,5 @@ Datepicker.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };

@@ -5,12 +5,26 @@ import MovieDeletePopup from '../movieDeletePopup/movieDeletePopup';
 import MovieEditPopup from '../movieEditPopup/movieEditPopup';
 
 
+const setMovieYear = (date) => date.substr(0, 4);
+
 export default function MovieCard(props) {
   const {
     title, genre, year, src, id, releaseDate, url, overview, runtime, selectMovie, description, rating,
   } = props;
 
-  const [currentTitle, setCurrentTitle] = useState(title);
+  const [cardObject, setCardObject] = useState({
+    title,
+    genre,
+    releaseDate,
+    src,
+    url,
+    overview,
+    runtime,
+    id,
+    year,
+    description,
+    rating
+  });
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
@@ -19,13 +33,19 @@ export default function MovieCard(props) {
     deleteMovieOpen(!deleteMovie);
   },[deleteMovie]);
 
-  const editMoviePopup = useCallback((a) => {
-    if(a) {
-      setCurrentTitle(a);
+  const editMoviePopup = useCallback((editedValues) => {
+    if(editedValues) {
+      setCardObject({
+        ...cardObject,
+        title: editedValues.title,
+        overview: editedValues.overview,
+        poster_path: editedValues.poster_path,
+        releaseDate: editedValues.release_date,
+        runtime: editedValues.runtime,
+      })
     }
-    console.log(a);
     editMovieOpen(!editMovie);
-  },[editMovie]);
+  },[editMovie, cardObject]);
 
   return (
     <div className="movie-card">
@@ -36,14 +56,14 @@ export default function MovieCard(props) {
       <MovieEditPopup
         isOpen={editMovie}
         handleClose={editMoviePopup}
-        title={title}
-        genre={genre}
-        releaseDate={releaseDate}
-        src={src}
-        url={url}
-        overview={overview}
-        runtime={runtime}
-        id={id}
+        title={cardObject.title}
+        genre={cardObject.genre}
+        releaseDate={cardObject.releaseDate}
+        src={cardObject.src}
+        url={cardObject.url}
+        overview={cardObject.overview}
+        runtime={cardObject.runtime}
+        id={cardObject.id}
       />
       <MovieDeletePopup
         isOpen={deleteMovie}
@@ -59,15 +79,15 @@ export default function MovieCard(props) {
         onKeyDown={() => selectMovie(id)} />
       <div className="movie-card__info">
         <div className="movie-card__title-wrap">
-          <h3 className="movie-card__title">{currentTitle}</h3>
-          <p className="movie-card__rating">{rating}</p>
-          <p className="movie-card__descrp">{genre}</p>
+          <h3 className="movie-card__title">{cardObject.title}</h3>
+          <p className="movie-card__rating">{cardObject.rating}</p>
+          <p className="movie-card__descrp">{cardObject.genre}</p>
         </div>
         <div className="movie-card__time">
-          <p className="movie-card__year">{year}</p>
-          <p className="movie-card__runtime">{runtime}</p>
+          <p className="movie-card__year">{setMovieYear(cardObject.releaseDate)}</p>
+          <p className="movie-card__runtime">{cardObject.runtime}</p>
         </div>
-        <div className="movie-card__full-descrp">{description}</div>
+        <div className="movie-card__full-descrp">{cardObject.description}</div>
       </div>
     </div>
   );

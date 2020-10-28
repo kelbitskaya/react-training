@@ -9,7 +9,6 @@ import Constants from '../constants';
 
 const mapStateToProps =(state) => {
   return {
-    movies: state,
     sortingType: state
   }
 };
@@ -19,7 +18,7 @@ const matchDispatchToProps = (dispatch) => {
 };
 
 const SortBy = (props) =>  {
-  const { updateMovies, movies } = props; // updateMovies-> selected sorting
+  const { updateMovies } = props;
 
   const applySortMovies = useCallback((sortType) => {
     updateMovies(sortType.type)
@@ -35,7 +34,6 @@ const SortBy = (props) =>  {
 
 SortBy.propTypes = {
   updateMovies: PropTypes.func.isRequired,
-  movies: PropTypes.object.isRequired,
 };
 
 

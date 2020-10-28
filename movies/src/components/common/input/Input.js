@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function Input(props) {
   const {
-    id, title, labelClassName, value, dataTypeForm, handleInputChange, name
+    id, title, labelClassName, value, handleInputChange, name
   } = props;
 
   return (
@@ -14,9 +14,8 @@ export default function Input(props) {
           type="text"
           id={id}
           className="input"
-          value={value}
+          defaultValue={value}
           name={name}
-          data-type-form={dataTypeForm}
           onChange={handleInputChange}
         />
       </label>
@@ -26,6 +25,8 @@ export default function Input(props) {
 
 Input.propTypes = {
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   labelClassName: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

@@ -53,11 +53,19 @@ const MovieDeletePopup = (props) => {
       </div>
     </Modal>
   );
-}
+};
 
 MovieDeletePopup.propTypes = {
   handleClose: PropTypes.func.isRequired,
+  updateMovies: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  movies: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+        filter: PropTypes.func.isRequired,
+      }))
+  }).isRequired,
 };
 
 

@@ -32,12 +32,8 @@ const AddMovie = (props) => {
 
     const formData = new FormData(e.target);
     const values = Object.fromEntries(formData.entries());
-
-    const newList = [...state.movies.data, values];
-    state.movies.data = newList;
+    state.movies.data = [...state.movies.data, values];
     setCurrentMovies( state.movies);
-
-    console.log('v5', values);
     updateMovies(currentMovies);
     isMovieActionPopup(true);
   };
@@ -107,6 +103,12 @@ const AddMovie = (props) => {
 
 AddMovie.propTypes = {
   handleClose: PropTypes.func.isRequired,
+  updateMovies: PropTypes.func.isRequired,
+  state: PropTypes.shape({
+    movies: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    })
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(AddMovie);

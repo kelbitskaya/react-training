@@ -1,13 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import ResultCount from '../resultCount/ResultCount';
-import {editMoviesList, fetchMovies} from '../../store/actions/actions';
+import {fetchMovies} from '../../store/actions/actions';
 import sortBy from '../../helpers/sortBy';
 import Constants from "../constants";
 
-// const setMovieGenre = (movie) => movie.genres && movie.genres.join(', ');
 const setMovieGenre = (movie) => {
   if(Array.isArray(movie.genres)) {
     return movie.genres.join(', ');
@@ -18,8 +17,8 @@ const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies.data,     // state.movies
-    sortingType: state.sortingType, // state.sortingType
+    movies: state.movies.data,
+    sortingType: state.sortingType,
     filteringType: state.filteringType
   }
 };
@@ -36,11 +35,10 @@ const MoviesList = (props) => {
   const sortMovieList = (movieGenre, movieList) => {
     if (movieGenre === Constants.GENRE[0].title) {
       return movieList;
-    } 
+    }
       return movieList.filter((movie) => movie.genres.some(
         (genre) => genre.toLowerCase() === movieGenre,
       ));
-    
   };
 
   const sortedMovieList = useMemo(()=>{
@@ -53,10 +51,6 @@ const MoviesList = (props) => {
     }
     return movieList;
   },[movies, sortingType, filteringType]);
-
-  const editMovie = (movieId) => {
-    console.log(movieId);
-  };
 
   return (
     <>
@@ -78,7 +72,6 @@ const MoviesList = (props) => {
               overview={movie.overview}
               runtime={movie.runtime}
               selectMovie={selectMovie}
-              editingMovie={editMovie}
             />
           ))
           :
@@ -97,10 +90,13 @@ MoviesList.propTypes = {
     length: PropTypes.number.isRequired,
     loading: PropTypes.bool.isRequired,
     map: PropTypes.func.isRequired,
+    sort: PropTypes.func.isRequired,
     movies: PropTypes.shape({
       data: PropTypes.arrayOf(PropTypes.object).isRequired,
     })
   }).isRequired,
+  sortingType: PropTypes.string.isRequired,
+  filteringType: PropTypes.string.isRequired,
   selectMovie: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
 };

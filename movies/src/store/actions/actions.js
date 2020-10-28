@@ -50,8 +50,6 @@ export const changeFiltering = filteringType => {
 };
 
 export const editMoviesList = movies => {
-  console.log("EDIT_MOVIE");
-  console.info(movies);
   return {
     type: types.CHANGE_MOVIES_LIST,
     payload: movies
