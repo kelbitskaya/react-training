@@ -1,21 +1,11 @@
 import React, {useCallback} from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { changeSorting } from '../../store/actions/actions';
+import { fetchMovies } from '../../store/actions/actions';
 import Dropdown from '../common/dropdown/Dropdown';
 import Constants from '../constants';
 
-
-const mapStateToProps =(state) => {
-  return {
-    sortingType: state
-  }
-};
-
-const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({updateMovies: changeSorting}, dispatch)
-};
+const matchDispatchToProps = {updateMovies: fetchMovies};
 
 const SortBy = (props) =>  {
   const { updateMovies } = props;
@@ -37,4 +27,4 @@ SortBy.propTypes = {
 };
 
 
-export default connect(mapStateToProps, matchDispatchToProps)(SortBy);
+export default connect(null, matchDispatchToProps)(SortBy);

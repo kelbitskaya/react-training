@@ -2,9 +2,8 @@ import {
   FETCH_MOVIES_LIST_REQUEST,
   FETCH_MOVIES_LIST_SUCCESS,
   FETCH_MOVIES_LIST_FAILURE,
-  CHANGE_SORTING,
-  CHANGE_FILTERING,
-  CHANGE_MOVIES_LIST
+  CHANGE_MOVIES_LIST,
+  UPDATE_MOVIE,
 } from "../actions/actionTypes"
 
 const initialState = {
@@ -12,7 +11,8 @@ const initialState = {
   movies: [],
   error: '',
   sortingType: 'release_date',
-  filteringType: 'all'
+  filteringType: 'all',
+  currentMovie: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,21 +37,15 @@ const rootReducer = (state = initialState, action) => {
         error: action.payload
       };
 
-    case CHANGE_SORTING:
-      return {
-        ...state,
-        sortingType: action.payload
-      };
-    case CHANGE_FILTERING:
-      return {
-        ...state,
-        filteringType: action.payload
-      };
-
     case CHANGE_MOVIES_LIST:
       return {
         ...state,
         movies: action.payload,
+      };
+    case UPDATE_MOVIE:
+      return {
+        ...state,
+        currentMovie: action.payload,
       };
     default:
       return state;

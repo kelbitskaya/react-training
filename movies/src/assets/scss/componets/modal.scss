@@ -30,7 +30,8 @@
     margin-bottom: 40px;
   }
 
-  .input {
+  .input,
+  .react-datepicker__input-container input {
     display: block;
     width: 100%;
     min-height: 50px;
@@ -43,6 +44,21 @@
       display: block;
       margin: 25px 0 40px 0;
     }
+
+    &.error {
+      border: 1px solid red;
+    }
+  }
+
+  .input-feedback {
+    text-transform: capitalize;
+    color: red;
+    margin-top: 10px;
+    font-size: 1.4rem;
+  }
+
+  .react-datepicker-wrapper {
+    display: block;
   }
 
   &-dropdown {

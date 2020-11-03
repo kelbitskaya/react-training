@@ -34,7 +34,7 @@ export default function MultiSelectInput(props) {
       name='select'
       dataSelect={selected}
     />
-      <input type="text" value={values} name="genres" className='hidden-input'/>
+      <input type="hidden" value={values} name="genres"/>
     </>
   );
 }
@@ -49,3 +49,6 @@ MultiSelectInput.propTypes = {
     split: PropTypes.func.isRequired,
   }).isRequired,
 };
+
+
+

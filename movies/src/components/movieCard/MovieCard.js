@@ -1,30 +1,23 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 import MovieMenu from '../movieMenu/MovieMenu';
 import MovieDeletePopup from '../movieDeletePopup/movieDeletePopup';
 import MovieEditPopup from '../movieEditPopup/movieEditPopup';
+import {getMovieById} from "../../store/actions/actions";
 
+const mapStateToProps = (state) => {
+  return {
+    movie: state.currentMovie,
+  }
+};
 
-const setMovieYear = (date) => date.substr(0, 4);
+const matchDispatchToProps = {getMovie: getMovieById};
 
-export default function MovieCard(props) {
+const MovieCard = (props) => {
   const {
-    title, genre, year, src, id, releaseDate, url, overview, runtime, selectMovie, description, rating,
+    title, genre, year, src, id, releaseDate, url, overview, runtime, selectMovie, description, rating, getMovie
   } = props;
-
-  const [cardObject, setCardObject] = useState({
-    title,
-    genre,
-    releaseDate,
-    src,
-    url,
-    overview,
-    runtime,
-    id,
-    year,
-    description,
-    rating
-  });
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
@@ -33,19 +26,17 @@ export default function MovieCard(props) {
     deleteMovieOpen(!deleteMovie);
   },[deleteMovie]);
 
-  const editMoviePopup = useCallback((editedValues) => {
-    if(editedValues) {
-      setCardObject({
-        ...cardObject,
-        title: editedValues.title,
-        overview: editedValues.overview,
-        poster_path: editedValues.poster_path,
-        releaseDate: editedValues.release_date,
-        runtime: editedValues.runtime,
-      })
-    }
+  const editMoviePopup = useCallback(() => {
     editMovieOpen(!editMovie);
-  },[editMovie, cardObject]);
+  },[editMovie, editMoviePopup]);
+
+  const receiveMovie = (movieId) => {
+    getMovie(movieId);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <div className="movie-card">
@@ -56,14 +47,14 @@ export default function MovieCard(props) {
       <MovieEditPopup
         isOpen={editMovie}
         handleClose={editMoviePopup}
-        title={cardObject.title}
-        genre={cardObject.genre}
-        releaseDate={cardObject.releaseDate}
-        src={cardObject.src}
-        url={cardObject.url}
-        overview={cardObject.overview}
-        runtime={cardObject.runtime}
-        id={cardObject.id}
+        title={title}
+        genre={genre}
+        releaseDate={releaseDate}
+        src={src}
+        url={url}
+        overview={overview}
+        runtime={runtime}
+        id={id}
       />
       <MovieDeletePopup
         isOpen={deleteMovie}
@@ -75,23 +66,23 @@ export default function MovieCard(props) {
         alt={title}
         className="movie-card__img"
         role="presentation"
-        onClick={() => selectMovie(id)}
+        onClick={() => receiveMovie(id)}
         onKeyDown={() => selectMovie(id)} />
       <div className="movie-card__info">
         <div className="movie-card__title-wrap">
-          <h3 className="movie-card__title">{cardObject.title}</h3>
-          <p className="movie-card__rating">{cardObject.rating}</p>
-          <p className="movie-card__descrp">{cardObject.genre}</p>
+          <h3 className="movie-card__title">{title}</h3>
+          <p className={rating ? 'movie-card__rating' : 'hide'}>{rating}</p>
+          <p className="movie-card__descrp">{genre}</p>
         </div>
         <div className="movie-card__time">
-          <p className="movie-card__year">{setMovieYear(cardObject.releaseDate)}</p>
-          <p className="movie-card__runtime">{cardObject.runtime}</p>
+          <p className="movie-card__year">{releaseDate}</p>
+          <p className="movie-card__runtime">{runtime} min</p>
         </div>
-        <div className="movie-card__full-descrp">{cardObject.description}</div>
+        <div className="movie-card__full-descrp">{description}</div>
       </div>
     </div>
   );
-}
+};
 
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
@@ -106,4 +97,8 @@ MovieCard.propTypes = {
   rating: PropTypes.number.isRequired,
   genre: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectMovie: PropTypes.func.isRequired,
+  getMovie: PropTypes.func.isRequired,
 };
+
+
+export default connect(mapStateToProps, matchDispatchToProps)(MovieCard);

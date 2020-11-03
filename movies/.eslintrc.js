@@ -19,6 +19,7 @@ module.exports = {
     "react/button-has-type": "off",
     "react-hooks/rules-of-hooks": "error",
     "no-nested-ternary": "off",
-    "import/no-named-as-default": 0
+    "import/no-named-as-default": 0,
+    "object-shorthand": ["error", "never"]
   }
 };

@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo } from 'react';
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import ResultCount from '../resultCount/ResultCount';
 import {fetchMovies} from '../../store/actions/actions';
-import sortBy from '../../helpers/sortBy';
-import Constants from "../constants";
 
 const setMovieGenre = (movie) => {
   if(Array.isArray(movie.genres)) {
@@ -15,51 +13,26 @@ const setMovieGenre = (movie) => {
 };
 const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr(0, 4);
 
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies.data,
-    sortingType: state.sortingType,
-    filteringType: state.filteringType
-  }
-};
-
 const MoviesList = (props) => {
-  const { movies, selectMovie, sortingType, filteringType } = props;
+  const { selectMovie } = props;
+  const movies = useSelector(state => state.movies.data);
   const isMovieListLoaded = movies && movies.length;
 
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    props.dispatch(fetchMovies());
+    dispatch(fetchMovies());
   },[]);
-
-
-  const sortMovieList = (movieGenre, movieList) => {
-    if (movieGenre === Constants.GENRE[0].title) {
-      return movieList;
-    }
-      return movieList.filter((movie) => movie.genres.some(
-        (genre) => genre.toLowerCase() === movieGenre.toLowerCase(),
-      ));
-  };
-
-  const sortedMovieList = useMemo(()=>{
-    let movieList = [];
-    if(movies && sortingType) {
-      movieList = movies.sort(sortBy(sortingType));
-    }
-    if(movieList.length && filteringType) {
-      movieList = sortMovieList(filteringType, movieList);
-    }
-    return movieList;
-  },[movies, sortingType, filteringType]);
 
   return (
     <>
       { isMovieListLoaded ?
         <div className="movie-list">
           <ResultCount
-            count={sortedMovieList.length}
+            count={movies.length}
           />
-          { sortedMovieList.length ? sortedMovieList.map((movie) => (
+          { movies.length ? movies.map((movie) => (
             <MovieCard
               title={movie.title}
               genre={setMovieGenre(movie)}
@@ -75,7 +48,7 @@ const MoviesList = (props) => {
             />
           ))
           :
-            ''
+            null
           }
         </div>
       :
@@ -95,10 +68,7 @@ MoviesList.propTypes = {
       data: PropTypes.arrayOf(PropTypes.object).isRequired,
     })
   }).isRequired,
-  sortingType: PropTypes.string.isRequired,
-  filteringType: PropTypes.string.isRequired,
   selectMovie: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;

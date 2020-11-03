@@ -2,30 +2,19 @@ import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
 import CloseButton from '../closeButton/CloseButton';
 import Button from '../common/button/Button';
-import {editMoviesList} from "../../store/actions/actions";
+import {deleteMovie} from "../../store/actions/actions";
 
-const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({updateMovies: editMoviesList}, dispatch)
-};
-
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies,
-  }
-};
+const matchDispatchToProps = {updateMovies: deleteMovie};
 
 const MovieDeletePopup = (props) => {
-  const { handleClose, isOpen, id, updateMovies, movies } = props;
+  const { handleClose, isOpen, id, updateMovies } = props;
 
   Modal.setAppElement(document.getElementById('root'));
 
-  const deleteMovie = () => {
-    const movieList = movies.data;
-    movies.data = movieList.filter(movie => movie.id !== id);
-    updateMovies(movies);
+  const removeMovieFromList = () => {
+    updateMovies(id);
     handleClose();
   };
 
@@ -47,7 +36,7 @@ const MovieDeletePopup = (props) => {
             className="button button_primary"
             title="CONFIRM"
             type="button"
-            handleClick={deleteMovie}
+            handleClick={removeMovieFromList}
           />
         </div>
       </div>
@@ -60,13 +49,7 @@ MovieDeletePopup.propTypes = {
   updateMovies: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
-  movies: PropTypes.shape({
-      data: PropTypes.arrayOf(
-        PropTypes.shape({
-        filter: PropTypes.func.isRequired,
-      }))
-  }).isRequired,
 };
 
 
-export default connect(mapStateToProps, matchDispatchToProps)(MovieDeletePopup);
+export default connect(null, matchDispatchToProps)(MovieDeletePopup);

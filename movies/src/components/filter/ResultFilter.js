@@ -1,46 +1,32 @@
 import React, {useCallback, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
 import Constants from '../constants';
-import {changeFiltering} from "../../store/actions/actions";
+import {fetchMovies} from "../../store/actions/actions";
 
-const mapStateToProps =(state) => {
-  return {
-    movies: state,
-    filteringType: state
-  }
-};
-
-const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({updateMovies: changeFiltering}, dispatch)
-};
-
+const matchDispatchToProps = {updateMovies: fetchMovies};
 
 const ResultFilter = (props) => {
-  const genres = Constants.GENRE;
   const { updateMovies } = props;
-  const [activeGenre] = useState(genres[0]);
+  const [activeGenre, setActiveGenre] = useState(0);
 
-  const filterMovies = useCallback((e) => {
+  const filterMovies = useCallback((e, index) => {
+    setActiveGenre(index);
     const genre = e.target.dataset && e.target.dataset.name;
-    Array.from(document.querySelectorAll('.genre-filter__item')).forEach(item => {
-      item.classList.remove('active');
-    });
-    e.target.classList.add('active');
-    updateMovies(genre);
+    const currentGenre = (genre  === 'all') ? '' : genre;
+    updateMovies('', currentGenre);
   }, [updateMovies]);
 
   return (
     <ul className="genre-filter">
-      { Constants.GENRE.map((genre) => (
+      { Constants.GENRE.map((genre, index) => (
         <li key={genre.id}>
           <button
             type="button"
             data-name={genre.title}
-            className={genre.title === activeGenre.title ? 'genre-filter__item active' : 'genre-filter__item'}
+            className={activeGenre === index ? 'genre-filter__item active' : 'genre-filter__item'}
             key={genre.id}
-            onClick={filterMovies}
+            onClick={(e)=>filterMovies(e, index)}
           >
             {genre.title}
           </button>
@@ -54,4 +40,4 @@ ResultFilter.propTypes = {
   updateMovies: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(ResultFilter);
+export default connect(null, matchDispatchToProps)(ResultFilter);

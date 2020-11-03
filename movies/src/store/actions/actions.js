@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as types from './actionTypes';
-import store from '../store'
 
 export const fetchMoviesRequest = () => {
   return {
@@ -22,10 +21,20 @@ export const fetchMoviesFailure = error => {
   }
 };
 
-export const fetchMovies = (sortBy, filter, offset, shouldUpdateState) => {
+export const fetchMovies = (sortBy, filter, title) => {
   return function (dispatch) {
     dispatch(fetchMoviesRequest());
-    axios.get(`http://localhost:4000/movies?&limit=9&sortOrder=asc${sortBy === 'title' ? '&sortBy=title' : sortBy === 'rating' ? '&sortBy=vote_average' : '&sortBy=release_date'}${filter ? `&filter=${filter}` : ''}`)
+
+    axios.get('http://localhost:4000/movies', {
+      params: {
+        limit: 9,
+        sortOrder: 'asc',
+        sortBy: sortBy || 'release_date',
+        filter: filter,
+        search: title,
+        searchBy: 'title'
+      }
+    })
       .then(response => {
         dispatch(fetchMoviesSuccess(response.data));
       })
@@ -35,18 +44,50 @@ export const fetchMovies = (sortBy, filter, offset, shouldUpdateState) => {
   }
 };
 
-export const changeSorting = sortingType => {
-  return {
-    type: types.CHANGE_SORTING,
-    payload: sortingType
+export const deleteMovie = (id) => async dispatch => {
+  try {
+    await axios.delete(`http://localhost:4000/movies/${id}`);
+    dispatch(fetchMovies('', '', ''));
+  } catch (error) {
+    console.error();
   }
 };
 
-export const changeFiltering = filteringType => {
-  return {
-    type: types.CHANGE_FILTERING,
-    payload: filteringType
-  }
+export const updateMovieInList = (data) => ({
+  type: types.UPDATE_MOVIE,
+  payload: data,
+});
+
+export const getMovieById = (id) => async dispatch => {
+  await axios({
+    method: 'get',
+    url: `http://localhost:4000/movies/${id}`,
+  }).then(response => {
+    dispatch(updateMovieInList(response.data));
+  });
+};
+
+
+
+export const updateMovie = (data) => async dispatch => {
+  await axios({
+    method: 'put',
+    url: 'http://localhost:4000/movies/',
+    headers: {'Content-Type': 'application/json'},
+    data: JSON.stringify({...data})
+  });
+  dispatch(fetchMovies('', '', ''));
+};
+
+export const addMovie = (data) => async dispatch => {
+  console.info(data);
+  await axios({
+    method: 'post',
+    url: 'http://localhost:4000/movies/',
+    headers: {'Content-Type': 'application/json'},
+    data: data
+  });
+  dispatch(fetchMovies('', '', ''));
 };
 
 export const editMoviesList = movies => {
@@ -56,4 +97,3 @@ export const editMoviesList = movies => {
   }
 };
 
-store.dispatch(fetchMovies());
