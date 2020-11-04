@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 import { Formik } from "formik";
 import Button from '../common/button/Button';
 import { fetchMovies } from '../../store/actions/actions';
+import {withRouter} from "react-router";
 
 const matchDispatchToProps = { updateMovies: fetchMovies };
 
-const Search = ({ updateMovies } ) => {
+const Search = withRouter(({ history, updateMovies } ) => {
 
   return (
     <Formik
       initialValues={{ title: ""}}
       onSubmit={(values) => {
-        updateMovies('', '', values.title)
+        updateMovies('', '', values.title);
+        history.push(`/search/Search%20:title=${values.title}`);
       }}
     >
       {props => {
@@ -37,7 +39,7 @@ const Search = ({ updateMovies } ) => {
       }}
     </Formik>
   );
-};
+});
 
 Search.propTypes = {
   updateMovies: PropTypes.func.isRequired,

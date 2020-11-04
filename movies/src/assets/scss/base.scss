@@ -38,6 +38,31 @@ body {
   @include for-desktop-up {
     width: 1200px;
   }
+
+  &_error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.error-img {
+  margin-bottom: 20px;
+}
+
+.error-title {
+  font-weight: 100;
+  font-size: 4rem;
+  margin-bottom: 40px;
+
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 250px;
+  }
 }
 
 
@@ -48,6 +73,10 @@ body {
 
   &__text {
     font-weight: 700;
+  }
+
+  &-wrap {
+    margin: 20px 20px 0;
   }
 }
 
@@ -106,6 +135,7 @@ body {
 .movie-search {
   margin-top: 10px;
   padding: 0;
+  width: 100%;
 
   @include for-tablet-landscape-up {
     min-width: 220px;
@@ -140,4 +170,10 @@ body {
 
 .hide {
   display: none;
+}
+
+.loading {
+  display: block;
+  margin: 0 auto;
+  transform: scale(0.5);
 }

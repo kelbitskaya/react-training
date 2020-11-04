@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {  Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Logo from '../common/Logo';
 import Search from '../search/Search';
 import AddButton from '../addButton/AddButton';
@@ -21,12 +23,10 @@ const setMovieGenre = (movie) => movie.genres && movie.genres.join(', ');
 const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr(0, 4);
 
 
-const Header = (props) => {
-  const { movie } = props;
-  const [isMovieSelected, selectedMovieId] = useState(false);
+const Header = withRouter(({history, movie}) => {
 
   const redirectToHomePage = () => {
-    selectedMovieId(true)
+    history.push('/');
   };
 
 
@@ -35,46 +35,45 @@ const Header = (props) => {
       <div className="header__content">
         <div className="header-line">
           <Logo />
-
-          {
-            isMovieSelected || !movie?
-              <AddButton />
-              :
-              <SearchButton goHomePage={redirectToHomePage}/>
-          }
         </div>
-      {
-        isMovieSelected || !movie ?
-        <>
+        <Route exact path="/">
+          <AddButton/>
           <div className="movie-search">
             <h1 className="header__title">find your movie</h1>
             <Search
               placeholder="What do you want to watch?"
             />
           </div>
-        </>
+        </Route>
 
-          :
-          <MovieCard
-            title={movie.title}
-            genre={setMovieGenre(movie)}
-            year={movie.year}
-            releaseDate={setMovieYear(movie)}
-            src={movie.poster_path}
-            url={movie.poster_path}
-            id={movie.id}
-            key={movie.id}
-            overview={movie.overview}
-            runtime={movie.runtime}
-            description={movie.overview}
-            rating={movie.vote_average}
-          />
-      }
-          </div>
+        {
+          movie ?
+            <Route exact path="/film/:id">
+              <SearchButton goHomePage={redirectToHomePage}/>
+              <MovieCard
+                title={movie.title}
+                genre={setMovieGenre(movie)}
+                year={movie.year}
+                releaseDate={setMovieYear(movie)}
+                src={movie.poster_path}
+                url={movie.poster_path}
+                id={movie.id}
+                key={movie.id}
+                overview={movie.overview}
+                runtime={movie.runtime}
+                description={movie.overview}
+                rating={movie.vote_average}
+              />
+            </Route>
+            :
+            null
+        }
+
+      </div>
 
     </header>
   );
-};
+});
 
 Header.propTypes = {
   movie: PropTypes.shape({

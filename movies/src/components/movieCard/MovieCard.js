@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import MovieMenu from '../movieMenu/MovieMenu';
@@ -14,10 +15,22 @@ const mapStateToProps = (state) => {
 
 const matchDispatchToProps = {getMovie: getMovieById};
 
-const MovieCard = (props) => {
-  const {
-    title, genre, year, src, id, releaseDate, url, overview, runtime, selectMovie, description, rating, getMovie
-  } = props;
+const MovieCard = withRouter(({
+                                history,
+                                title,
+                                genre,
+                                year,
+                                src,
+                                id,
+                                releaseDate,
+                                url,
+                                overview,
+                                runtime,
+                                selectMovie,
+                                description,
+                                rating,
+                                getMovie
+                              }) => {
 
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
@@ -36,6 +49,7 @@ const MovieCard = (props) => {
       top: 0,
       behavior: 'smooth',
     });
+    history.push(`/film/${movieId}`)
   };
 
   return (
@@ -82,7 +96,7 @@ const MovieCard = (props) => {
       </div>
     </div>
   );
-};
+});
 
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,

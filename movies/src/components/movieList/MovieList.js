@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import {Route, withRouter} from 'react-router';
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
+import NoMovie from '../noMovie/NoMovie';
 import ResultCount from '../resultCount/ResultCount';
 import {fetchMovies} from '../../store/actions/actions';
+import NotFoundedPage from "../../pages/NotFoundedPage";
 
 const setMovieGenre = (movie) => {
   if(Array.isArray(movie.genres)) {
@@ -13,8 +16,7 @@ const setMovieGenre = (movie) => {
 };
 const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr(0, 4);
 
-const MoviesList = (props) => {
-  const { selectMovie } = props;
+const MoviesList = withRouter (({history, selectMovie}) => {
   const movies = useSelector(state => state.movies.data);
   const isMovieListLoaded = movies && movies.length;
 
@@ -29,34 +31,43 @@ const MoviesList = (props) => {
     <>
       { isMovieListLoaded ?
         <div className="movie-list">
-          <ResultCount
-            count={movies.length}
-          />
-          { movies.length ? movies.map((movie) => (
-            <MovieCard
-              title={movie.title}
-              genre={setMovieGenre(movie)}
-              year={setMovieYear(movie)}
-              releaseDate={movie.release_date}
-              src={movie.poster_path}
-              url={movie.poster_path}
-              id={movie.id}
-              key={movie.id}
-              overview={movie.overview}
-              runtime={movie.runtime}
-              selectMovie={selectMovie}
+          <Route exact path="/search/*">
+            <ResultCount
+              count={movies.length}
             />
-          ))
-          :
-            null
+          </Route>
+          {
+            movies.length ? movies.map((movie) => (
+              <Route exact path="/search/*">
+                <MovieCard
+                  title={movie.title}
+                  genre={setMovieGenre(movie)}
+                  year={setMovieYear(movie)}
+                  releaseDate={movie.release_date}
+                  src={movie.poster_path}
+                  url={movie.poster_path}
+                  id={movie.id}
+                  key={movie.id}
+                  overview={movie.overview}
+                  runtime={movie.runtime}
+                  selectMovie={selectMovie}
+                />
+              </Route>
+            ))
+              :
+              <NoMovie/>
           }
+          <Route exact path="/" component={NoMovie}/>
         </div>
       :
-        <p>Movies is loading</p>
+        <img
+          src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/0f17e9c8fa9ca8050c3e4f2e5bfc4da3-1591607734/Black_background/create-loading-animation-for-your-business-needs.gif"
+          alt="loading"
+          className="loading"/>
       }
     </>
   );
-};
+});
 
 MoviesList.propTypes = {
   movies: PropTypes.shape({
