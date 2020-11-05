@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux'
 import {Route, withRouter} from 'react-router';
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import NoMovie from '../noMovie/NoMovie';
 import ResultCount from '../resultCount/ResultCount';
-import {fetchMovies} from '../../store/actions/actions';
 
 const setMovieGenre = (movie) => {
   if(Array.isArray(movie.genres)) {
@@ -19,25 +18,18 @@ const MoviesList = withRouter (({history, selectMovie}) => {
   const movies = useSelector(state => state.movies.data);
   const isMovieListLoaded = movies && movies.length;
 
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchMovies());
-  },[]);
-
   return (
     <>
       { isMovieListLoaded ?
         <div className="movie-list">
-          <Route path="/search/*">
+          <Route path="/search">
             <ResultCount
               count={movies.length}
             />
           </Route>
           {
             movies.length ? movies.map((movie) => (
-              <Route path={["/search/*", "/film"]}>
+              <Route path={["/search", "/film"]}>
                 <MovieCard
                   title={movie.title}
                   genre={setMovieGenre(movie)}

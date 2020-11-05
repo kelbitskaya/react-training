@@ -1,10 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Logo = () => (
-  <a href="./Home" className="logo">
-    <strong className="logo__text">netflix</strong>
-    roulette
-  </a>
+  <NavLink to="/" className="logo">
+      <strong className="logo__text">netflix</strong>
+      roulette
+  </NavLink>
 );
 
 export default Logo;

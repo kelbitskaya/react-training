@@ -1,11 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router'
 import Footer from '../components/footer/Footer';
 import Logo from "../components/common/Logo";
-import Button from "../components/common/button/Button"
+import Button from "../components/common/button/Button";
+import { NavLink } from 'react-router-dom';
 
-const NotFoundedPage = withRouter(({ history }) => {
-
+export default function NotFoundedPage () {
   return (
     <>
       <div className="logo-wrap">
@@ -16,15 +15,14 @@ const NotFoundedPage = withRouter(({ history }) => {
         <img
           className="error-img"
           src="https://sun2.velcom-by-minsk.userapi.com/KCI0WIjwCzynKyh9j98sMC9k8_l4nsGU84l6xg/o2ketwoTJ5Q.jpg"/>
-        <Button
-          className="button button_secondary"
-          title="Go back to home"
-          handleClick={() => history.push('/')}
-        />
+        <NavLink to="/">
+          <Button
+            className="button button_secondary"
+            title="Go back to home"
+          />
+        </NavLink>
       </div>
       <Footer/>
      </>
   );
-});
-
-export default NotFoundedPage;
+};

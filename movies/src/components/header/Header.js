@@ -36,7 +36,7 @@ const Header = withRouter(({history, movie}) => {
         <div className="header-line">
           <Logo />
         </div>
-        <Route exact path={["/search/*", "/"]}>
+        <Route exact path={["/search*", "/"]}>
           <AddButton/>
           <div className="movie-search">
             <h1 className="header__title">find your movie</h1>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Formik } from "formik";
@@ -8,14 +8,22 @@ import {withRouter} from "react-router";
 
 const matchDispatchToProps = { updateMovies: fetchMovies };
 
-const Search = withRouter(({ history, updateMovies } ) => {
+const Search = withRouter(({ history, location, updateMovies } ) => {
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const q = params.get('q');
+    updateMovies('', '', q);
+    console.log(q);
+  }, []);
 
   return (
     <Formik
       initialValues={{ title: ""}}
       onSubmit={(values) => {
         updateMovies('', '', values.title);
-        history.push(`/search/Search%20:title=${values.title}`);
+        history.push(`/search?q=${values.title}&searchBy=title`);
       }}
     >
       {props => {
