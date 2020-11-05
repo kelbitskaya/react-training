@@ -28,7 +28,7 @@ const MovieCard = ({title, genre, year, src, id, releaseDate, url, overview, run
 
   const editMoviePopup = useCallback(() => {
     editMovieOpen(!editMovie);
-  },[editMovie, editMoviePopup]);
+  },[editMovie]);
 
   const receiveMovie = (movieId) => {
     getMovie(movieId);

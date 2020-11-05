@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
+import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
 import CloseButton from '../closeButton/CloseButton';
 import MultiSelectInput from '../common/multiSelectInput/MultiSelectInput';
 import Constants from '../constants';
 import MovieActionPopup from '../movieActionPopup/MovieActionPopup';
 import  DatePicker from "../common/datepicker/DatePicker";
-import {updateMovie} from "../../store/actions/actions";
+import { updateMovie } from "../../store/actions/actions";
 
 const matchDispatchToProps = { updateMovies: updateMovie };
 
@@ -25,6 +26,8 @@ const MovieEditPopup = ({
         updateMovies,
       }) => {
   const [isMovieAction] = useState(false);
+
+  let location = useLocation();
 
   return (
     <Modal
@@ -48,8 +51,10 @@ const MovieEditPopup = ({
           }}
           onSubmit={(values) => {
             const fromValues = values;
+            const params = new URLSearchParams(location.search);
+            const q = params.get('q');
             fromValues.runtime = +fromValues.runtime;
-            updateMovies(fromValues, id);
+            updateMovies(fromValues, q);
             handleClose(!isMovieAction);
           }}
 
@@ -68,43 +73,42 @@ const MovieEditPopup = ({
         >
           {props => {
             const {
-              values,
               errors,
               isSubmitting,
-              handleChange,
-              handleBlur,
               handleSubmit,
             } = props;
             return (
               <form onSubmit={handleSubmit}>
                 <label htmlFor="title" className="input-label">
                   <span className="modal-label-text">MOVIE ID</span>
-                  <input
-                    id="title"
-                    placeholder="Enter movie title"
-                    type="text"
-                    value={values.id}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className='input'
-                    disabled
-                  />
+                  <Field name="id">
+                    {({ field }) => (
+                      <input
+                        {...field}
+                        id="id"
+                        type="text"
+                        className= "input"
+                        disabled
+                      />
+                    )}
+                  </Field>
                 </label>
                 <label htmlFor="title" className="input-label">
                   <span className="modal-label-text">Title</span>
-                  <input
-                    id="title"
-                    placeholder="Enter movie title"
-                    type="text"
-                    value={values.title}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.title
-                        ? "input error"
-                        : "input"
-                    }
-                  />
+                  <Field name="title">
+                    {({ field }) => (
+                      <input
+                        {...field}
+                        id="title"
+                        placeholder="Enter movie title"
+                        type="text"
+                        className={
+                          errors.title
+                            ? "input error"
+                            : "input"
+                        }/>
+                    )}
+                  </Field>
                   {errors.title && (
                     <div className="input-feedback">{errors.title}</div>
                   )}
@@ -126,19 +130,20 @@ const MovieEditPopup = ({
 
                 <label htmlFor="poster_path" className="input-label">
                   <span className="modal-label-text">MOVIE URL</span>
-                  <input
-                    id="poster_path"
-                    placeholder="Enter movie poster path"
-                    type="text"
-                    value={values.poster_path}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.poster_path
-                        ? "input error"
-                        : "input"
-                    }
-                  />
+                  <Field name="poster_path">
+                    {({ field }) => (
+                      <input
+                        {...field}
+                        id="poster_path"
+                        placeholder="Enter movie poster path"
+                        type="text"
+                        className={
+                          errors.poster_path
+                            ? "input error"
+                            : "input"
+                        }/>
+                    )}
+                  </Field>
                   {errors.poster_path && (
                     <div className="input-feedback">{errors.poster_path}</div>
                   )}
@@ -152,19 +157,20 @@ const MovieEditPopup = ({
 
                 <label htmlFor="overview" className="input-label">
                   <span className="modal-label-text">OVERVIEW</span>
-                  <input
-                    id="overview"
-                    placeholder="Enter movie overview"
-                    type="text"
-                    value={values.overview}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.overview
-                        ? "input error"
-                        : "input"
-                    }
-                  />
+                  <Field name="overview">
+                    {({ field }) => (
+                      <input
+                        {...field}
+                        id="overview"
+                        placeholder="Enter movie overview"
+                        type="text"
+                        className={
+                          errors.overview
+                            ? "input error"
+                            : "input"
+                        }/>
+                    )}
+                  </Field>
                   {errors.overview && (
                     <div className="input-feedback">{errors.overview}</div>
                   )}
@@ -173,19 +179,20 @@ const MovieEditPopup = ({
 
                 <label htmlFor="runtime" className="input-label">
                   <span className="modal-label-text">RUNTIME</span>
-                  <input
-                    id="runtime"
-                    type="text"
-                    placeholder="Enter movie runtime"
-                    value={values.runtime}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.runtime
-                        ? "input error"
-                        : "input"
-                    }
-                  />
+                  <Field name="runtime">
+                    {({ field }) => (
+                      <input
+                        {...field}
+                        id="runtime"
+                        placeholder="Enter movie runtime"
+                        type="text"
+                        className={
+                          errors.runtime
+                            ? "input error"
+                            : "input"
+                        }/>
+                    )}
+                  </Field>
                   {errors.runtime && (
                     <div className="input-feedback">{errors.runtime}</div>
                   )}

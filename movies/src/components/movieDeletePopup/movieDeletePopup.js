@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import {useLocation} from "react-router";
 import {connect} from "react-redux";
 import CloseButton from '../closeButton/CloseButton';
 import Button from '../common/button/Button';
@@ -10,11 +11,14 @@ const matchDispatchToProps = {updateMovies: deleteMovie};
 
 const MovieDeletePopup = (props) => {
   const { handleClose, isOpen, id, updateMovies } = props;
+  let location = useLocation();
 
   Modal.setAppElement(document.getElementById('root'));
 
   const removeMovieFromList = () => {
-    updateMovies(id);
+    const params = new URLSearchParams(location.search);
+    const q = params.get('q');
+    updateMovies(id, q);
     handleClose();
   };
 

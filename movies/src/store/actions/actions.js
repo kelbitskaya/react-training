@@ -44,10 +44,10 @@ export const fetchMovies = (sortBy, filter, title) => {
   }
 };
 
-export const deleteMovie = (id) => async dispatch => {
+export const deleteMovie = (id, searchType) => async dispatch => {
   try {
     await axios.delete(`http://localhost:4000/movies/${id}`);
-    dispatch(fetchMovies('', '', ''));
+    dispatch(fetchMovies('', '', searchType));
   } catch (error) {
     console.error();
   }
@@ -69,14 +69,14 @@ export const getMovieById = (id) => async dispatch => {
 
 
 
-export const updateMovie = (data) => async dispatch => {
+export const updateMovie = (data, searchType) => async dispatch => {
   await axios({
     method: 'put',
     url: 'http://localhost:4000/movies/',
     headers: {'Content-Type': 'application/json'},
     data: JSON.stringify({...data})
   });
-  dispatch(fetchMovies('', '', ''));
+  dispatch(fetchMovies('', '', searchType));
 };
 
 export const addMovie = (data) => async dispatch => {

@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Formik } from "formik";
 import Button from '../common/button/Button';
 import { fetchMovies } from '../../store/actions/actions';
 
 const matchDispatchToProps = { updateMovies: fetchMovies };
 
-const Search = ({ location, updateMovies } ) => {
+const Search = ({ updateMovies } ) => {
 
   let history = useHistory();
+  let location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

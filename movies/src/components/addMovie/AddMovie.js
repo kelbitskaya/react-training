@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import MultiSelectInput from '../common/multiSelectInput/MultiSelectInput';
 import CloseButton from '../closeButton/CloseButton';
@@ -43,30 +43,28 @@ const AddMovie = ({ updateMovies, handleClose }) => {
       >
         {props => {
           const {
-            values,
             errors,
             isSubmitting,
-            handleChange,
-            handleBlur,
             handleSubmit,
           } = props;
           return (
             <form onSubmit={handleSubmit}>
               <label htmlFor="title" className="input-label">
                 <span className="modal-label-text">Title</span>
-                <input
-                  id="title"
-                  placeholder="Enter movie title"
-                  type="text"
-                  value={values.title}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.title
-                      ? "input error"
-                      : "input"
-                  }
-                />
+                <Field name="title">
+                  {({ field }) => (
+                    <input
+                      {...field}
+                      id="title"
+                      placeholder="Enter movie title"
+                      type="text"
+                      className={
+                        errors.title
+                          ? "input error"
+                          : "input"
+                      }/>
+                  )}
+                </Field>
                 {errors.title && (
                   <div className="input-feedback">{errors.title}</div>
                 )}
@@ -88,19 +86,20 @@ const AddMovie = ({ updateMovies, handleClose }) => {
 
               <label htmlFor="poster_path" className="input-label">
                 <span className="modal-label-text">MOVIE URL</span>
-                <input
-                  id="poster_path"
-                  placeholder="Enter movie poster path"
-                  type="text"
-                  value={values.poster_path}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.poster_path
-                      ? "input error"
-                      : "input"
-                  }
-                />
+                <Field name="poster_path">
+                  {({ field }) => (
+                    <input
+                      {...field}
+                      id="poster_path"
+                      placeholder="Enter movie poster path"
+                      type="text"
+                      className={
+                        errors.poster_path
+                          ? "input error"
+                          : "input"
+                      }/>
+                  )}
+                </Field>
                 {errors.poster_path && (
                   <div className="input-feedback">{errors.poster_path}</div>
                 )}
@@ -114,19 +113,20 @@ const AddMovie = ({ updateMovies, handleClose }) => {
 
               <label htmlFor="overview" className="input-label">
                 <span className="modal-label-text">OVERVIEW</span>
-                <input
-                  id="overview"
-                  placeholder="Enter movie overview"
-                  type="text"
-                  value={values.overview}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.overview
-                      ? "input error"
-                      : "input"
-                  }
-                />
+                <Field name="overview">
+                  {({ field }) => (
+                    <input
+                      {...field}
+                      id="overview"
+                      placeholder="Enter movie overview"
+                      type="text"
+                      className={
+                        errors.overview
+                          ? "input error"
+                          : "input"
+                      }/>
+                  )}
+                </Field>
                 {errors.overview && (
                   <div className="input-feedback">{errors.overview}</div>
                 )}
@@ -135,19 +135,20 @@ const AddMovie = ({ updateMovies, handleClose }) => {
 
               <label htmlFor="runtime" className="input-label">
                 <span className="modal-label-text">RUNTIME</span>
-                <input
-                  id="runtime"
-                  type="text"
-                  placeholder="Enter movie runtime"
-                  value={values.runtime}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.runtime
-                      ? "input error"
-                      : "input"
-                  }
-                />
+                <Field name="runtime">
+                  {({ field }) => (
+                    <input
+                      {...field}
+                      id="runtime"
+                      placeholder="Enter movie runtime"
+                      type="text"
+                      className={
+                        errors.runtime
+                          ? "input error"
+                          : "input"
+                      }/>
+                  )}
+                </Field>
                 {errors.runtime && (
                   <div className="input-feedback">{errors.runtime}</div>
                 )}
