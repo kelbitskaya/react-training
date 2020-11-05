@@ -13,7 +13,7 @@ export default function App() {
     <ErrorBoundary>
         <BrowserRouter>
             <Switch>
-              <Route exact path={["/", "/search/*", "/film/:id"]} component={HomePage} />
+              <Route path={["/", "/search/*", "/film/:id", "/home"]} component={HomePage} />
               <Route path="*" component={NotFoundedPage} />
             </Switch>
         </BrowserRouter>

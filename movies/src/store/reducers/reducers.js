@@ -24,6 +24,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case FETCH_MOVIES_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
         movies: action.payload,
         sortingType: 'release_date',
@@ -32,6 +33,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case FETCH_MOVIES_LIST_FAILURE:
       return {
+        ...state,
         loading: false,
         movies: [],
         error: action.payload

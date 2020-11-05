@@ -9,6 +9,7 @@ import AddButton from '../addButton/AddButton';
 import MovieCard from '../movieCard/MovieCard';
 import SearchButton from '../searchButton/SearchButton';
 import {getMovieById} from '../../store/actions/actions';
+import store from '../../store/store'
 
 
 const mapStateToProps = (state) => {
@@ -24,7 +25,6 @@ const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr
 
 
 const Header = withRouter(({history, movie}) => {
-
   const redirectToHomePage = () => {
     history.push('/');
   };
@@ -36,7 +36,7 @@ const Header = withRouter(({history, movie}) => {
         <div className="header-line">
           <Logo />
         </div>
-        <Route exact path="/">
+        <Route exact path={["/search/*", "/"]}>
           <AddButton/>
           <div className="movie-search">
             <h1 className="header__title">find your movie</h1>
@@ -45,7 +45,6 @@ const Header = withRouter(({history, movie}) => {
             />
           </div>
         </Route>
-
         {
           movie ?
             <Route exact path="/film/:id">

@@ -6,7 +6,6 @@ import MovieCard from '../movieCard/MovieCard';
 import NoMovie from '../noMovie/NoMovie';
 import ResultCount from '../resultCount/ResultCount';
 import {fetchMovies} from '../../store/actions/actions';
-import NotFoundedPage from "../../pages/NotFoundedPage";
 
 const setMovieGenre = (movie) => {
   if(Array.isArray(movie.genres)) {
@@ -31,14 +30,14 @@ const MoviesList = withRouter (({history, selectMovie}) => {
     <>
       { isMovieListLoaded ?
         <div className="movie-list">
-          <Route exact path="/search/*">
+          <Route path="/search/*">
             <ResultCount
               count={movies.length}
             />
           </Route>
           {
             movies.length ? movies.map((movie) => (
-              <Route exact path="/search/*">
+              <Route path={["/search/*", "/film"]}>
                 <MovieCard
                   title={movie.title}
                   genre={setMovieGenre(movie)}
