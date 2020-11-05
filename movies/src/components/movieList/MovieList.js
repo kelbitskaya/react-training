@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import {Route, withRouter} from 'react-router';
+import { Route } from 'react-router';
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/MovieCard';
 import NoMovie from '../noMovie/NoMovie';
@@ -14,7 +14,7 @@ const setMovieGenre = (movie) => {
 };
 const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr(0, 4);
 
-const MoviesList = withRouter (({history, selectMovie}) => {
+const MoviesList = ({selectMovie}) => {
   const movies = useSelector(state => state.movies.data);
   const isMovieListLoaded = movies && movies.length;
 
@@ -58,7 +58,7 @@ const MoviesList = withRouter (({history, selectMovie}) => {
       }
     </>
   );
-});
+};
 
 MoviesList.propTypes = {
   movies: PropTypes.shape({

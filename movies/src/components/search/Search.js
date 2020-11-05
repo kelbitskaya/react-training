@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import Button from '../common/button/Button';
 import { fetchMovies } from '../../store/actions/actions';
-import {withRouter} from "react-router";
 
 const matchDispatchToProps = { updateMovies: fetchMovies };
 
-const Search = withRouter(({ history, location, updateMovies } ) => {
+const Search = ({ location, updateMovies } ) => {
+
+  let history = useHistory();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    console.log(params);
     const q = params.get('q');
     updateMovies('', '', q);
-    console.log(q);
   }, []);
 
   return (
@@ -47,7 +47,7 @@ const Search = withRouter(({ history, location, updateMovies } ) => {
       }}
     </Formik>
   );
-});
+};
 
 Search.propTypes = {
   updateMovies: PropTypes.func.isRequired,

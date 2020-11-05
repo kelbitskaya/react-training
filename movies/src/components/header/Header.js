@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
+import React, from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {  Route } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { useHistory } from "react-router-dom";
 import Logo from '../common/Logo';
 import Search from '../search/Search';
 import AddButton from '../addButton/AddButton';
 import MovieCard from '../movieCard/MovieCard';
 import SearchButton from '../searchButton/SearchButton';
 import {getMovieById} from '../../store/actions/actions';
-import store from '../../store/store'
 
 
 const mapStateToProps = (state) => {
@@ -24,7 +23,9 @@ const setMovieGenre = (movie) => movie.genres && movie.genres.join(', ');
 const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr(0, 4);
 
 
-const Header = withRouter(({history, movie}) => {
+const Header = ({movie}) => {
+
+  let history = useHistory();
   const redirectToHomePage = () => {
     history.push('/');
   };
@@ -72,7 +73,7 @@ const Header = withRouter(({history, movie}) => {
 
     </header>
   );
-});
+};
 
 Header.propTypes = {
   movie: PropTypes.shape({

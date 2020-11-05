@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { withRouter } from 'react-router'
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import { useHistory } from "react-router-dom";
 import MovieMenu from '../movieMenu/MovieMenu';
 import MovieDeletePopup from '../movieDeletePopup/movieDeletePopup';
 import MovieEditPopup from '../movieEditPopup/movieEditPopup';
@@ -15,23 +15,10 @@ const mapStateToProps = (state) => {
 
 const matchDispatchToProps = {getMovie: getMovieById};
 
-const MovieCard = withRouter(({
-                                history,
-                                title,
-                                genre,
-                                year,
-                                src,
-                                id,
-                                releaseDate,
-                                url,
-                                overview,
-                                runtime,
-                                selectMovie,
-                                description,
-                                rating,
-                                getMovie
-                              }) => {
+const MovieCard = ({title, genre, year, src, id, releaseDate, url, overview, runtime,
+                     selectMovie, description, rating, getMovie }) => {
 
+  let history = useHistory();
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
 
@@ -96,7 +83,7 @@ const MovieCard = withRouter(({
       </div>
     </div>
   );
-});
+};
 
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
