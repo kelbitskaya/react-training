@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {  Route } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import Logo from '../common/Logo';
 import Search from '../search/Search';
 import AddButton from '../addButton/AddButton';
 import MovieCard from '../movieCard/MovieCard';
 import SearchButton from '../searchButton/SearchButton';
-import {getMovieById} from '../../store/actions/actions';
+import {getMovieById} from '../../store/actions/actions'
 
 
 const mapStateToProps = (state) => {
@@ -24,11 +25,23 @@ const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr
 
 
 const Header = ({movie}) => {
+  const dispatch = useDispatch();
+  let location = useLocation();
 
   let history = useHistory();
   const redirectToHomePage = () => {
     history.push('/');
   };
+
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes('film') && !movie) {
+      const movieId = path.replace(/\/film\//gi, '');
+      dispatch(getMovieById(movieId));
+    }
+  });
+
 
 
   return (
