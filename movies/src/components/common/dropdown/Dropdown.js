@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {useLocation} from "react-router";
 
 export default function Dropdown(props) {
   const { options, updateMovies } = props;
   const [selectedItem, setSelectedItem] = useState(0);
   const [activeItem, setActiveItem] = useState(0);
+
+  let location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const sortBy = params.get('sortBy');
+    const index = options.reduce((p,c,i) => {return c.title === sortBy ?i:p}, 0);
+    setSelectedItem(index);
+  });
+
 
   const toggleDropdown = () => {
     setActiveItem(!activeItem);

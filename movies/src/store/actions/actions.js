@@ -69,14 +69,14 @@ export const getMovieById = (id) => async dispatch => {
 
 
 
-export const updateMovie = (data, searchType) => async dispatch => {
+export const updateMovie = (data, searchType, sortBy) => async dispatch => {
   await axios({
     method: 'put',
     url: 'http://localhost:4000/movies/',
     headers: {'Content-Type': 'application/json'},
     data: JSON.stringify({...data})
   });
-  dispatch(fetchMovies('', '', searchType));
+  dispatch(fetchMovies(sortBy, '', searchType));
 };
 
 export const addMovie = (data) => async dispatch => {

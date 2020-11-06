@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import { fetchMovies } from '../../store/actions/actions';
 import Dropdown from '../common/dropdown/Dropdown';
 import Constants from '../constants';
+import { useHistory } from "react-router-dom";
 
 const matchDispatchToProps = {updateMovies: fetchMovies};
 
 const SortBy = (props) =>  {
   const { updateMovies } = props;
+    let history = useHistory();
 
   const applySortMovies = useCallback((sortType) => {
-    updateMovies(sortType.type)
+    updateMovies(sortType.type);
+    history.push(`/search?sortOrder=asc&sortBy=${sortType.type}`)
   }, [updateMovies]);
 
   return (

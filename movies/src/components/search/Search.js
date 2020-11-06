@@ -5,6 +5,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Formik } from "formik";
 import Button from '../common/button/Button';
 import { fetchMovies } from '../../store/actions/actions';
+import Constants from '../constants';
 
 const matchDispatchToProps = { updateMovies: fetchMovies };
 
@@ -15,8 +16,10 @@ const Search = ({ updateMovies } ) => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
+    const path = location.pathname;
     const q = params.get('q');
-    updateMovies('', '', q);
+    const sortBy = params.get('sortBy');
+    updateMovies(sortBy, '', q);
   }, []);
 
   return (
