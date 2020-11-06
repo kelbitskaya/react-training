@@ -1,9 +1,9 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import Constants from '../constants';
 import {fetchMovies} from "../../store/actions/actions";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const matchDispatchToProps = {updateMovies: fetchMovies};
 
@@ -11,13 +11,31 @@ const ResultFilter = (props) => {
   const { updateMovies } = props;
   const [activeGenre, setActiveGenre] = useState(0);
   let history = useHistory();
+  let location = useLocation();
+
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const filter = params.get('filter');
+    const index = Constants.GENRE.reduce((p,c,i) => {
+      return c.title.toLowerCase() === filter ? i : p
+    }, 0);
+    setActiveGenre(index);
+  });
 
   const filterMovies = useCallback((e, index) => {
-    setActiveGenre(index);
+    const currentLocation = !!location.search ? location.search : history.location.search;
+    const params = new URLSearchParams(currentLocation);
     const genre = e.target.dataset && e.target.dataset.name;
-    const currentGenre = (genre  === 'all') ? '' : genre;
-    history.push(`/search?filter=${currentGenre}`);
-    updateMovies('', currentGenre);
+    const currentGenre = (genre  === 'all') ? '' : genre.toLowerCase();
+    const title = params.get('q');
+    const sortBy = params.get('sortBy');
+    setActiveGenre(index);
+
+    currentGenre && params.set('filter', currentGenre);
+
+    history.push(`/search?${params.toString()}`);
+    updateMovies(sortBy, currentGenre, title);
   }, [updateMovies]);
 
   return (

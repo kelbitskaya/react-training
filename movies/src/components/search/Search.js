@@ -16,10 +16,10 @@ const Search = ({ updateMovies } ) => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const path = location.pathname;
     const q = params.get('q');
     const sortBy = params.get('sortBy');
-    updateMovies(sortBy, '', q);
+    const filter = params.get('sortBy');
+    updateMovies(sortBy, filter, q);
   }, []);
 
   return (

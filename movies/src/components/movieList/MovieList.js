@@ -51,10 +51,7 @@ const MoviesList = ({selectMovie}) => {
           <Route exact path="/" component={NoMovie}/>
         </div>
       :
-        <img
-          src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/0f17e9c8fa9ca8050c3e4f2e5bfc4da3-1591607734/Black_background/create-loading-animation-for-your-business-needs.gif"
-          alt="loading"
-          className="loading"/>
+        <NoMovie/>
       }
     </>
   );
