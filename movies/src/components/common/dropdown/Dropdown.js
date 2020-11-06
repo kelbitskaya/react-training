@@ -7,7 +7,7 @@ export default function Dropdown(props) {
   const [selectedItem, setSelectedItem] = useState(0);
   const [activeItem, setActiveItem] = useState(0);
 
-  let location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

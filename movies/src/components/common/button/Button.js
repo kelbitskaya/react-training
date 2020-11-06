@@ -17,7 +17,11 @@ Button.propTypes = {
   className: PropTypes.string.isRequired,
   type: PropTypes.string,
   title: PropTypes.node.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  handleClick: ()=>{},
 };
 
 Button.defaultProps = {

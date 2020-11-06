@@ -27,7 +27,7 @@ const MovieEditPopup = ({
       }) => {
   const [isMovieAction] = useState(false);
 
-  let location = useLocation();
+  const location = useLocation();
 
   return (
     <Modal

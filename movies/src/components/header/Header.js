@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import {  Route } from 'react-router-dom';
-import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useHistory, useLocation, Route } from "react-router-dom";
 import Logo from '../common/Logo';
 import Search from '../search/Search';
 import AddButton from '../addButton/AddButton';
 import MovieCard from '../movieCard/MovieCard';
 import SearchButton from '../searchButton/SearchButton';
 import {getMovieById} from '../../store/actions/actions'
+import MoviesList from "../movieList/MovieList";
 
 
 const mapStateToProps = (state) => {
@@ -26,9 +25,9 @@ const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr
 
 const Header = ({movie}) => {
   const dispatch = useDispatch();
-  let location = useLocation();
+  const location = useLocation();
 
-  let history = useHistory();
+  const history = useHistory();
   const redirectToHomePage = () => {
     history.push('/');
   };
@@ -106,8 +105,11 @@ Header.propTypes = {
     genre: PropTypes.arrayOf(PropTypes.string).isRequired,
     selectMovie: PropTypes.func.isRequired,
     map: PropTypes.func.isRequired,
-  }).isRequired,
+  }),
 };
 
+Header.defaultProps = {
+  movie: {},
+};
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

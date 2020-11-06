@@ -1,17 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 import Constants from '../constants';
 import {fetchMovies} from "../../store/actions/actions";
-import { useHistory, useLocation } from "react-router-dom";
 
 const matchDispatchToProps = {updateMovies: fetchMovies};
 
 const ResultFilter = (props) => {
   const { updateMovies } = props;
   const [activeGenre, setActiveGenre] = useState(0);
-  let history = useHistory();
-  let location = useLocation();
+  const history = useHistory();
+  const location = useLocation();
 
 
   useEffect(() => {

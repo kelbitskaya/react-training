@@ -1,8 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Footer from '../components/footer/Footer';
 import Logo from "../components/common/Logo";
 import Button from "../components/common/button/Button";
-import { NavLink } from 'react-router-dom';
 
 export default function NotFoundedPage () {
   return (

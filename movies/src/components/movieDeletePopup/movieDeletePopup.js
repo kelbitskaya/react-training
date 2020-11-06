@@ -11,7 +11,7 @@ const matchDispatchToProps = {updateMovies: deleteMovie};
 
 const MovieDeletePopup = (props) => {
   const { handleClose, isOpen, id, updateMovies } = props;
-  let location = useLocation();
+  const location = useLocation();
 
   Modal.setAppElement(document.getElementById('root'));
 

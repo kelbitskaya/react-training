@@ -20,6 +20,9 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "no-nested-ternary": "off",
     "import/no-named-as-default": 0,
-    "object-shorthand": ["error", "never"]
+    "no-extra-boolean-cast": 0,
+    "react/jsx-props-no-spreading": "off",
+    "object-shorthand": ["error", "never"],
+    "react/destructuring-assignment": ["enabled", "always"],
   }
 };

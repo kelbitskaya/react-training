@@ -18,7 +18,7 @@ const matchDispatchToProps = {getMovie: getMovieById};
 const MovieCard = ({title, genre, year, src, id, releaseDate, url, overview, runtime,
                      selectMovie, description, rating, getMovie }) => {
 
-  let history = useHistory();
+  const history = useHistory();
   const [deleteMovie, deleteMovieOpen] = useState(false);
   const [editMovie, editMovieOpen] = useState(false);
 

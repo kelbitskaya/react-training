@@ -5,14 +5,13 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Formik } from "formik";
 import Button from '../common/button/Button';
 import { fetchMovies } from '../../store/actions/actions';
-import Constants from '../constants';
 
 const matchDispatchToProps = { updateMovies: fetchMovies };
 
 const Search = ({ updateMovies } ) => {
 
-  let history = useHistory();
-  let location = useLocation();
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -55,11 +54,19 @@ const Search = ({ updateMovies } ) => {
 
 Search.propTypes = {
   updateMovies: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
   values: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-}).isRequired,
+    title: PropTypes.string,
+  }),
+};
+
+Search.defaultProps = {
+  values: {
+    title: ''
+  },
+  handleSubmit: ()=>{},
+  handleChange: ()=>{},
 };
 
 export default connect(null, matchDispatchToProps)(Search);

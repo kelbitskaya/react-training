@@ -29,7 +29,7 @@ const MoviesList = ({selectMovie}) => {
           </Route>
           {
             movies.length ? movies.map((movie) => (
-              <Route path={["/search", "/film"]}>
+              <Route path={["/search", "/film"]} key={movie.id}>
                 <MovieCard
                   title={movie.title}
                   genre={setMovieGenre(movie)}
@@ -64,10 +64,14 @@ MoviesList.propTypes = {
     map: PropTypes.func.isRequired,
     sort: PropTypes.func.isRequired,
     movies: PropTypes.shape({
-      data: PropTypes.arrayOf(PropTypes.object).isRequired,
+      data: PropTypes.arrayOf(PropTypes.array).isRequired,
     })
-  }).isRequired,
+  }),
   selectMovie: PropTypes.func.isRequired,
+};
+
+MoviesList.defaultProps = {
+  movies: [],
 };
 
 export default MoviesList;
