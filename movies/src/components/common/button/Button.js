@@ -22,8 +22,5 @@ Button.propTypes = {
 
 Button.defaultProps = {
   handleClick: ()=>{},
-};
-
-Button.defaultProps = {
   type: 'button',
 };
