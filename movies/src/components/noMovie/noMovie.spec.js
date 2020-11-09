@@ -1,5 +1,5 @@
 import React from 'react';
-import NoMovie from '../components/noMovie/NoMovie';
+import NoMovie from './NoMovie';
 
 const setUp = () => shallow(<NoMovie />);
 

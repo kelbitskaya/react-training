@@ -1,5 +1,5 @@
 import React from 'react';
-import ResultCount from '../components/resultCount/ResultCount';
+import ResultCount from './ResultCount';
 
 describe("ResultCount component", ()=>{
   it("should render ResultCount with props", ()=> {

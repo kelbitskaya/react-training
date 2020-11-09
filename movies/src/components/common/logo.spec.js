@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../components/common/Logo';
+import Logo from './Logo';
 
 describe("Logo component", ()=>{
   it("should render Logo component", ()=> {

@@ -80,7 +80,6 @@ export const updateMovie = (data, searchType, sortBy) => async dispatch => {
 };
 
 export const addMovie = (data) => async dispatch => {
-  console.info(data);
   await axios({
     method: 'post',
     url: 'http://localhost:4000/movies/',

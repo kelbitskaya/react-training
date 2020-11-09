@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/common/button/Button';
+import Button from './Button';
 
 const props = {
   className: "class",

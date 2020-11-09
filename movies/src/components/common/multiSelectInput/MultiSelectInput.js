@@ -14,12 +14,10 @@ export default function MultiSelectInput(props) {
   const onChange = useCallback((selectedElements) => {
     setSelected(selectedElements);
     getArrayValues(selectedElements)
-
   }, []);
 
   const getArrayValues = (selectedElements) => {
-    const resultString = selectedElements.map(item=>item.label).join(', ');
-    setValues(resultString)
+    setValues(selectedElements.map(item=>item.label).join(', '));
   };
 
   return (
@@ -47,8 +45,13 @@ MultiSelectInput.propTypes = {
   ).isRequired,
   defaultValues: PropTypes.shape({
     split: PropTypes.func.isRequired,
-  }).isRequired,
+  }),
 };
 
+MultiSelectInput.defaultProps = {
+  defaultValues: {
+    split: ()=>{},
+  },
+};
 
 
