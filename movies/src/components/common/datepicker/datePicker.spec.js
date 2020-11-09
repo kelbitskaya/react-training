@@ -20,7 +20,7 @@ describe('DatePicker component', () => {
     const component = rerender.create(
       <Formik>
         <Field>
-          <DatePicker {...props} onChange={onChange}/>
+          <DatePicker {...props} onChange={onChange} name="test" key="1"/>
         </Field>
       </Formik>
       );
