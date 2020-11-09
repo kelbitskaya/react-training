@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React from 'react';
+import thunk from 'redux-thunk';
+import configureMockStore from "redux-mock-store";
 
 import {
   fetchMoviesRequest,
@@ -13,6 +15,9 @@ import {
   updateMovieInList
 } from "./actions";
 import {expect} from "@jest/globals";
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 jest.mock('axios');
 
@@ -111,13 +116,13 @@ describe("movie actions", () => {
     expect(dispatch(fetchMovies(result)));
   });
 
-  test('getMovieById', async ()  => {
-    axios.put.mockImplementationOnce(() => Promise.resolve(data, searchType, sortBy));
-    const dispatch = jest.fn();
-    const updateMovieInList = jest.fn();
-    const result = await updateMovie(data, searchType, sortBy);
-    expect(dispatch(updateMovieInList(result)));
-  });
+  it('getMovieById', async (id) => {
+    const store = mockStore({});
+    await store.dispatch(getMovieById(id))
+      .then((response)=>{
+        expect(store.getActions()).toEqual(updateMovieInList(response))
+      })
+  })
 
 });
 
