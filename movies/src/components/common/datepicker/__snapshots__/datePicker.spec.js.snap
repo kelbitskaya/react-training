@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker component DatePicker layout 1`] = `
+<input
+  onBlur={[Function]}
+  onChange={[Function]}
+>
+  <div
+    className="react-datepicker-wrapper"
+  >
+    <div
+      className="react-datepicker__input-container"
+    >
+      <input
+        className=""
+        disabled={false}
+        name="test"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        readOnly={false}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</input>
+`;

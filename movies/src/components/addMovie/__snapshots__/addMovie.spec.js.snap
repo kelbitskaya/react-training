@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddMovie AddMovie snapshot 1`] = `
+Array [
+  <button
+    aria-label="Close"
+    className="button-close"
+    onClick={[MockFunction]}
+    type="button"
+  />,
+  <p
+    className="modal-title"
+  >
+    Add Movie
+  </p>,
+  <form
+    onSubmit={[Function]}
+  >
+    <label
+      className="input-label"
+      htmlFor="title"
+    >
+      <span
+        className="modal-label-text"
+      >
+        Title
+      </span>
+      <input
+        className="input"
+        id="title"
+        name="title"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter movie title"
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      className="input-label"
+      htmlFor="release_date"
+    >
+      <span
+        className="modal-label-text"
+      >
+        RELEASE DATE
+      </span>
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <input
+            className="input myClass"
+            disabled={false}
+            name="release_date"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </label>
+    <label
+      className="input-label"
+      htmlFor="poster_path"
+    >
+      <span
+        className="modal-label-text"
+      >
+        MOVIE URL
+      </span>
+      <input
+        className="input"
+        id="poster_path"
+        name="poster_path"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter movie poster path"
+        type="text"
+        value=""
+      />
+    </label>
+    <div
+      className="modal-dropdown"
+    >
+      <span
+        className="modal-label-text"
+      >
+        Genre
+      </span>
+      <div
+        className="go2139093995 multi-select"
+      >
+        <div
+          aria-expanded={false}
+          aria-readonly={true}
+          className="go2646822163 dropdown-container"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="go2642161244 dropdown-heading"
+            onClick={[Function]}
+          >
+            <div
+              className="dropdown-heading-value"
+            >
+              <span
+                className="gray"
+              >
+                Select...
+              </span>
+            </div>
+            <svg
+              className="dropdown-heading-dropdown-arrow gray"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              strokeWidth="2"
+              width="24"
+            >
+              <path
+                d="M6 9L12 15 18 9"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <input
+        name="genres"
+        type="hidden"
+        value=""
+      />
+    </div>
+    <label
+      className="input-label"
+      htmlFor="overview"
+    >
+      <span
+        className="modal-label-text"
+      >
+        OVERVIEW
+      </span>
+      <input
+        className="input"
+        id="overview"
+        name="overview"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter movie overview"
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      className="input-label"
+      htmlFor="runtime"
+    >
+      <span
+        className="modal-label-text"
+      >
+        RUNTIME
+      </span>
+      <input
+        className="input"
+        id="runtime"
+        name="runtime"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter movie runtime"
+        type="text"
+        value=""
+      />
+    </label>
+    <div
+      className="add-movie-buttons"
+    >
+      <button
+        className="button button_primary"
+        onClick={[MockFunction]}
+        type="button"
+      >
+        RESET
+      </button>
+      <button
+        className="button button_primary"
+        disabled={false}
+        type="submit"
+      >
+        SUBMIT
+      </button>
+    </div>
+  </form>,
+]
+`;

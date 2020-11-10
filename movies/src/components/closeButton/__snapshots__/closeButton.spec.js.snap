@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CloseButton component CloseButton layout 1`] = `
+<button
+  aria-label="Close"
+  className="button-close"
+  onClick={[MockFunction]}
+  type="button"
+/>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component should render Footer component 1`] = `
+<footer
+  class="footer"
+>
+  <a
+    aria-current="page"
+    class="logo active"
+    href="/"
+  >
+    <strong
+      class="logo__text"
+    >
+      netflix
+    </strong>
+    roulette
+  </a>
+</footer>
+`;
