@@ -73,16 +73,16 @@ describe("movie actions", () => {
 
 
   test('fetchMovies', () => {
-    const dispatch = jest.fn();
+    const store = mockStore({});
     const request = {"type": "FETCH_MOVIES_LIST"};
     axios.get.mockReturnValue(Promise.resolve(responseData));
     fetchMovies({
       sortBy,
       filter,
       title
-    })(dispatch);
-    expect(dispatch.mock.calls.length).toBe(1);
-    expect(dispatch).toHaveBeenCalledWith(request);
+    })(store.dispatch);
+    expect(store.dispatch.length).toBe(1);
+    expect(store.dispatch(fetchMoviesRequest())).toEqual(request);
   });
 
 
