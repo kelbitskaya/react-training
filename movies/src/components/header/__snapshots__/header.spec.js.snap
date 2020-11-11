@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header component Header 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="header__content"
+  >
+    <div
+      className="header-line"
+    >
+      <a
+        aria-current="page"
+        className="logo active"
+        href="/"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <strong
+          className="logo__text"
+        >
+          netflix
+        </strong>
+        roulette
+      </a>
+    </div>
+    <div
+      className="App"
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+        type="button"
+      >
+        + Add movie
+      </button>
+      <div />
+    </div>
+    <div
+      className="movie-search"
+    >
+      <h1
+        className="header__title"
+      >
+        find your movie
+      </h1>
+      <form
+        className="movie-search__line"
+        onSubmit={[Function]}
+      >
+        <input
+          className="movie-search__input"
+          id="title"
+          onChange={[Function]}
+          placeholder="What do you want to watch?"
+          type="text"
+          value=""
+        />
+        <button
+          className="button button_search"
+          onClick={[Function]}
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+`;
+
+exports[`should render noMovie component should contain .logo-wrap wrapper 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="header__content"
+  >
+    <div
+      className="header-line"
+    >
+      <a
+        aria-current="page"
+        className="logo active"
+        href="/"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <strong
+          className="logo__text"
+        >
+          netflix
+        </strong>
+        roulette
+      </a>
+    </div>
+    <div
+      className="App"
+    >
+      <button
+        className="button"
+        onClick={[Function]}
+        type="button"
+      >
+        + Add movie
+      </button>
+      <div />
+    </div>
+    <div
+      className="movie-search"
+    >
+      <h1
+        className="header__title"
+      >
+        find your movie
+      </h1>
+      <form
+        className="movie-search__line"
+        onSubmit={[Function]}
+      >
+        <input
+          className="movie-search__input"
+          id="title"
+          onChange={[Function]}
+          placeholder="What do you want to watch?"
+          type="text"
+          value=""
+        />
+        <button
+          className="button button_search"
+          onClick={[Function]}
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+`;

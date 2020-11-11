@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MovieMenu component should contain menu__item wrapper 1`] = `
+<div
+  className="menu__item"
+  onClick={[Function]}
+  role="presentation"
+>
+  <div
+    className="circle"
+  />
+  <div
+    className="circle"
+  />
+  <div
+    className="circle"
+  />
+</div>
+`;

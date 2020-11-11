@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultFilter component should render ResultFilter component 1`] = `
+<div
+  className="sort-by"
+>
+  <p
+    className="sort-by__text"
+  >
+    sort by
+  </p>
+  <div
+    className="dropdown"
+  >
+    <button
+      className="dropbtn "
+      onClick={[Function]}
+      type="button"
+    >
+      release date
+    </button>
+    <ul
+      className="dropdown-content "
+    >
+      <li
+        className="dropdown-content__item"
+        datatype="release_date"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        type="button"
+      >
+        release date
+      </li>
+      <li
+        className="dropdown-content__item"
+        datatype="title"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        type="button"
+      >
+        title
+      </li>
+      <li
+        className="dropdown-content__item"
+        datatype="rating"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        type="button"
+      >
+        rating
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`SortBy component should render SortBy component 1`] = `
+<div
+  className="sort-by"
+>
+  <p
+    className="sort-by__text"
+  >
+    sort by
+  </p>
+  <div
+    className="dropdown"
+  >
+    <button
+      className="dropbtn "
+      onClick={[Function]}
+      type="button"
+    >
+      release date
+    </button>
+    <ul
+      className="dropdown-content "
+    >
+      <li
+        className="dropdown-content__item"
+        datatype="release_date"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        type="button"
+      >
+        release date
+      </li>
+      <li
+        className="dropdown-content__item"
+        datatype="title"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        type="button"
+      >
+        title
+      </li>
+      <li
+        className="dropdown-content__item"
+        datatype="rating"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="presentation"
+        type="button"
+      >
+        rating
+      </li>
+    </ul>
+  </div>
+</div>
+`;

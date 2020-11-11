@@ -2,16 +2,17 @@ import React from "react";
 import AddMovie from "./AddMovie";
 import rerender from "react-test-renderer";
 import { Provider } from "react-redux";
-import actions, {addMovie} from "../../store/actions/actions";
+import {addMovie} from "../../store/actions/actions";
 import configureStore from "redux-mock-store";
 
 const props = {
   handleClose: ()=>{},
-  updateMovies: ()=>{},
+  updateMovies: jest.fn(),
   isSubmitting: ()=>{},
   handleChange: ()=>{},
   handleBlur: ()=>{},
   handleSubmit: ()=>{},
+
   state: {
     movies: {
       data: [],

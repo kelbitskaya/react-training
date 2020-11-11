@@ -64,6 +64,6 @@ export default function Dropdown(props) {
 };
 
 Dropdown.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.node).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   updateMovies: PropTypes.func.isRequired,
 };

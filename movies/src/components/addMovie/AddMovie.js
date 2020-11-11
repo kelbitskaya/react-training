@@ -185,22 +185,15 @@ const AddMovie = ({ handleClose }) => {
 
 AddMovie.propTypes = {
   handleClose: PropTypes.func.isRequired,
-  updateMovies: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  state: PropTypes.shape({
-    movies: PropTypes.shape({
-      data: PropTypes.arrayOf(PropTypes.object).isRequired,
-    })
-  }).isRequired,
+  isSubmitting: PropTypes.func,
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
   values: PropTypes.shape({
     title: PropTypes.string.isRequired,
     poster_path: PropTypes.string.isRequired,
     overview: PropTypes.string.isRequired,
     runtime: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 
   errors: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -208,7 +201,7 @@ AddMovie.propTypes = {
     overview: PropTypes.string.isRequired,
     runtime: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 };
 
 export default AddMovie;

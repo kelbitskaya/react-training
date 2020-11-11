@@ -108,7 +108,7 @@ describe("movie actions", () => {
     expect(dispatch(fetchMovies(result)));
   });
 
-  test('updateMovie', async ()  => {
+  test('updateMovie', async () => {
     axios.put.mockImplementationOnce(() => Promise.resolve(data, searchType, sortBy));
     const dispatch = jest.fn();
     const fetchMovies = jest.fn();
@@ -116,14 +116,14 @@ describe("movie actions", () => {
     expect(dispatch(fetchMovies(result)));
   });
 
-  it('getMovieById', async (id) => {
+  test('getMovieById', () => {
     const store = mockStore({});
-    await store.dispatch(getMovieById(id))
-      .then((response)=>{
-        expect(store.getActions()).toEqual(updateMovieInList(response))
-      })
-  })
-
+    const request = {"type": "UPDATE_MOVIE"};
+    axios.get.mockReturnValue(Promise.resolve(responseData));
+    store.dispatch(updateMovieInList(responseData));
+    expect(store.dispatch.length).toBe(1);
+    expect(store.dispatch(updateMovieInList())).toEqual(request);
+  });
 });
 
 

@@ -8,8 +8,6 @@ import AddButton from '../addButton/AddButton';
 import MovieCard from '../movieCard/MovieCard';
 import SearchButton from '../searchButton/SearchButton';
 import {getMovieById} from '../../store/actions/actions'
-import MoviesList from "../movieList/MovieList";
-
 
 const mapStateToProps = (state) => {
   return {
@@ -106,10 +104,6 @@ Header.propTypes = {
     selectMovie: PropTypes.func.isRequired,
     map: PropTypes.func.isRequired,
   }),
-};
-
-Header.defaultProps = {
-  movie: {},
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

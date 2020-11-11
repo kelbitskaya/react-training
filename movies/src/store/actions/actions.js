@@ -53,10 +53,12 @@ export const deleteMovie = (id, searchType) => async dispatch => {
   }
 };
 
-export const updateMovieInList = (data) => ({
-  type: types.UPDATE_MOVIE,
-  payload: data,
-});
+export const updateMovieInList = data => {
+  return {
+    type: types.UPDATE_MOVIE,
+    payload: data
+  }
+};
 
 export const getMovieById = (id) => async dispatch => {
   await axios({

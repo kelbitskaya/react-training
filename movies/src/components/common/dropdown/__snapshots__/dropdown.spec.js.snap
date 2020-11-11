@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown Dropdown 1`] = `
+<div
+  className="dropdown"
+>
+  <button
+    className="dropbtn "
+    onClick={[Function]}
+    type="button"
+  >
+    
+  </button>
+  <ul
+    className="dropdown-content "
+  >
+    <li
+      className="dropdown-content__item"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="presentation"
+      type="button"
+    >
+      
+    </li>
+  </ul>
+</div>
+`;

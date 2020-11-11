@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/runtime": "^7.12.1",
     "@jest/globals": "^26.6.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.3.1",
     "axios": "^0.20.0",
     "axios-mock-adapter": "^1.19.0",
     "core-js-compat": "^3.4.7",
@@ -25,6 +26,7 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.4",
+    "redux-test-utils": "^1.0.0",
     "redux-thunk": "^2.3.0",
     "sinon": "^9.2.1",
     "yup": "^0.29.3"
@@ -84,6 +86,9 @@
     "verbose": true,
     "clearMocks": true,
     "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js?(x)"
+    ],
     "setupFilesAfterEnv": [
       "./config/setupTest.js"
     ],

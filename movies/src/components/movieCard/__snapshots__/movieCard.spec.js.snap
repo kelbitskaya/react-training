@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MovieCard component should contain movie-card wrapper 1`] = `
+<div
+  className="movie-card"
+>
+  <div
+    className="menu__item"
+    onClick={[Function]}
+    role="presentation"
+  >
+    <div
+      className="circle"
+    />
+    <div
+      className="circle"
+    />
+    <div
+      className="circle"
+    />
+  </div>
+  <img
+    alt=""
+    className="movie-card__img"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="presentation"
+    src=""
+  />
+  <div
+    className="movie-card__info"
+  >
+    <div
+      className="movie-card__title-wrap"
+    >
+      <h3
+        className="movie-card__title"
+      >
+        
+      </h3>
+      <p
+        className="movie-card__rating"
+      >
+        123
+      </p>
+      <p
+        className="movie-card__descrp"
+      />
+    </div>
+    <div
+      className="movie-card__time"
+    >
+      <p
+        className="movie-card__year"
+      >
+        123
+      </p>
+      <p
+        className="movie-card__runtime"
+      >
+        123
+         min
+      </p>
+    </div>
+    <div
+      className="movie-card__full-descrp"
+    >
+      
+    </div>
+  </div>
+</div>
+`;
