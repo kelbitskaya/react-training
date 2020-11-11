@@ -227,25 +227,25 @@ const MovieEditPopup = ({
 
 MovieEditPopup.propTypes = {
   title: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
+  releaseDate: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   runtime: PropTypes.string.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  isSubmitting: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  updateMovies: PropTypes.func.isRequired,
+  handleClose: PropTypes.func,
+  isOpen: PropTypes.bool,
+  isSubmitting: PropTypes.func,
+  handleChange: PropTypes.func,
+  handleBlur: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  updateMovies: PropTypes.func,
   values: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster_path: PropTypes.string.isRequired,
     overview: PropTypes.string.isRequired,
     runtime: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 
   errors: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -253,7 +253,7 @@ MovieEditPopup.propTypes = {
     overview: PropTypes.string.isRequired,
     runtime: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 };
 
 
