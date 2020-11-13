@@ -10,8 +10,8 @@ function Index() {
 }
 
 Index.getInitialProps = async () => {
-  const response = await axios.get('http://localhost:4000/movies')
-  return { response }
+  const response = await axios.get('http://localhost:4000/movies');
+  return {movies: response.data};
 };
 
 export default Index;
