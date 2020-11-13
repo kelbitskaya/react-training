@@ -1,0 +1,154 @@
+.modal {
+  font-size: 2.1rem;
+  text-transform: uppercase;
+
+  &-overlay {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color-dark, 0.8);
+  }
+
+  &-content {
+    width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-dark;
+    padding: 40px 40px 30px;
+    border: 1px solid $color-grey;
+    overflow: auto;
+    max-height: 80%;
+  }
+
+  &-title {
+    font-size: 3.2rem;
+    margin-bottom: 40px;
+  }
+
+  .input,
+  .react-datepicker__input-container input {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    border: none;
+    background-color: $color-grey;
+    padding: 0 15px;
+    color: $color-light;
+
+    &-label {
+      display: block;
+      margin: 25px 0 40px 0;
+    }
+
+    &.error {
+      border: 1px solid red;
+    }
+  }
+
+  .input-feedback {
+    text-transform: capitalize;
+    color: red;
+    margin-top: 10px;
+    font-size: 1.4rem;
+  }
+
+  .react-datepicker-wrapper {
+    display: block;
+  }
+
+  &-dropdown {
+    .dropdown {
+      width: 100%;
+      text-align: left;
+      background-color: #424242;
+      padding: 15px;
+
+      .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+
+        &:after {
+          position: absolute;
+          right: 0;
+          margin-top: 5px;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  .dropdown-content {
+    min-width: 100%;
+  }
+
+  &-confirmation {
+    text-align: center;
+
+    &__text {
+      margin-top: 20px;
+    }
+  }
+
+  &-buttons-wrap {
+    margin-top: 30px;
+  }
+}
+
+.button-close{
+  position: absolute;
+  right: 32px;
+  top: 24px;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  &:after,
+  &:before {
+    position: absolute;
+    left: 11px;
+    top: 0;
+    content: ' ';
+    height: 24px;
+    width: 2px;
+    background-color: $color-light;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.modal-label-text {
+  color: $color-pink;
+  display: block;
+  margin-bottom: 10px;
+
+}
+
+.add-movie-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+
+  .button {
+    margin-left: 20px;
+  }
+}
+
+.ReactModal__Html--open,
+.ReactModal__Body--open {
+  overflow: hidden;
+}

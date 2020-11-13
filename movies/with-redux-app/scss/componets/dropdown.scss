@@ -1,0 +1,151 @@
+.dropbtn {
+  background-color: transparent;
+  color: $color-light;
+  border: none;
+  cursor: pointer;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 10px;
+    border-style: solid;
+    border-width: 13.0px 7.5px 0 7.5px;
+    border-color: #f65260 transparent transparent transparent;
+  }
+
+  &__open {
+    &:after {
+      border-width: 0 7.5px 13.0px 7.5px;
+      border-color: transparent transparent #f65260 transparent;
+    }
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $color-dark;
+  color: rgba($color-light, 0.8);
+  min-width: 185px;
+  box-shadow: 0 0 10px rgba($color-light, 0.2);
+  z-index: 1;
+  margin-top: 5px;
+  right: 0;
+
+  .multi-select & {
+    display: block;
+  }
+}
+
+.dropdown-content {
+  &__item {
+    color: rgba($color-light, 0.8);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 10px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-grey-light;
+    }
+  }
+}
+
+.dropdown-content__shown {
+  display: block;
+}
+
+.sort-by {
+  display: flex;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  max-width: 200px;
+  flex-wrap: wrap;
+
+  @include for-tablet-landscape-up {
+    max-width: 100%;
+  }
+
+  >.sort-by__text {
+    margin-right: 20px;
+    opacity: 0.5;
+  }
+}
+.multi-select {
+  .dropdown {
+    &-container{
+      --rmsc-border: $color-grey;
+      --rmsc-bg: $color-grey;
+      --rmsc-hover: $color-grey;
+      --rmsc-selected: $color-grey;
+      background-color: $color-grey;
+      outline: none;
+      border: none;
+      color: rgba( $color-light, 0.6);
+      padding: 6px 0;
+    }
+
+    &-heading {
+      &:hover {
+        cursor: pointer;
+      }
+
+      &-dropdown-arrow {
+        &.gray {
+          color: $color-pink;
+        }
+      }
+    }
+  }
+}
+
+.item-renderer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item-renderer input {
+  width: 2rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-pink;
+  }
+}
+
+.item-renderer span {
+  color: rgba($color-light, 0.6);
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+input[type="checkbox"] + span {
+  background-image: url(https://sun2.dataix-by-minsk.userapi.com/aQWEC76fLnAEHvlhBb720vrIu_xJm_1NfSE-6Q/Cqeo5Yh0QhM.jpg);
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  background-position: 0 -52px;
+}
+input[type="checkbox"]:checked + span {
+  background-position: 0 -4px;
+}
+
+.select-panel input {
+  background-color: $color-grey-light;
+  color: rgba( $color-light, 0.6);
+}

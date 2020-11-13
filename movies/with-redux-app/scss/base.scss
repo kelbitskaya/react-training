@@ -1,0 +1,181 @@
+@import './normalize';
+@import './variables';
+@import './mixins';
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.6rem;
+  color: $color-light;
+  background: $color-dark;
+}
+
+html,
+body,
+#__next{
+  height: 100%;
+}
+
+.wrapper {
+  &_error {
+    text-align: center;
+  }
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+
+  @include for-desktop-up {
+    width: 1200px;
+  }
+
+  &_error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.error-img {
+  margin-bottom: 20px;
+}
+
+.error-title {
+  font-weight: 100;
+  font-size: 4rem;
+  margin-bottom: 40px;
+
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 250px;
+  }
+}
+
+
+.logo {
+  color: $color-pink;
+  font-size: 2.8rem;
+  text-decoration: none;
+
+  &__text {
+    font-weight: 700;
+  }
+
+  &-wrap {
+    margin: 20px 20px 0;
+  }
+}
+
+.button {
+  padding: 10px;
+  min-width: 160px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: none;
+  color: $color-pink;
+  background: rgba($color-light, 0.2);
+
+  @include for-tablet-landscape-up  {
+    padding: 20px;
+    min-width: 220px;
+    font-size: 2.4rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &_search {
+   background: $color-pink;
+    color: $color-light;
+    margin-left: 20px;
+  }
+
+  &_primary {
+    background-color: $color-pink;
+    color: $color-light;
+  }
+
+  &_secondary {
+    background: transparent;
+    border: 1px solid $color-pink;
+  }
+
+  &_search-icon {
+    background-image: url("https://www.settlersgreen.com/local/img/ico_search_pink.svg");
+    width: 20px;
+    height: 20px;
+    transform: scale(1.6);
+    background-color: transparent;
+    border: none;
+    display: block;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.movie-search {
+  margin-top: 10px;
+  padding: 0;
+  width: 100%;
+
+  @include for-tablet-landscape-up {
+    min-width: 220px;
+    font-size: 2.4rem;
+    margin-top: 40px;
+    padding: 0 50px;
+  }
+
+  &__line {
+    display: flex;
+    width: 100%;
+  }
+
+  &__input {
+    flex-grow: 1;
+    color: $color-light;
+    background-color: rgba($color-light, 0.2);
+    border-radius: 5px;
+    border: none;
+    font-size: 1.6rem;
+    padding: 0 20px;
+
+    &::placeholder {
+      color: rgba($color-light, 0.6);
+    }
+
+    @include for-tablet-landscape-up  {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.loading {
+  display: block;
+  margin: 0 auto;
+  transform: scale(0.5);
+}
