@@ -38,7 +38,7 @@ export const fetchMovies = (sortBy, filter, title) => {
     })
       .then(response => {
         console.info(response);
-        store.dispatch(fetchMoviesSuccess(response.data));
+        dispatch(fetchMoviesSuccess(response.data));
       })
       .catch(error => {
         dispatch(fetchMoviesFailure(error.message))
