@@ -32,7 +32,6 @@ const MoviesList = ({selectMovie, movies}) => {
             <ResultCount
               count={movies && movies.data && movies.data.length}
             />
-          {console.log(movies)}
           {
             movies && movies.data && movies.data.length ? movies.data.map((movie) => (
                 <MovieCard

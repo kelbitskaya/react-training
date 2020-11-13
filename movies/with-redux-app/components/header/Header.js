@@ -25,8 +25,6 @@ const setMovieYear = (movie) => movie.release_date && +movie.release_date.substr
 const Header = ({movie}) => {
 
   const router = useRouter();
-  console.log(router);
-
 
   const dispatch = useDispatch();
   const { pathname } = router;
