@@ -1,11 +1,12 @@
 import React, {useState, useCallback} from 'react';
+import axios from "axios";
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import MovieList from '../components/movieList/MovieList';
 import Filters from '../components/filter/Filters';
 import Constants from '../components/constants';
 
-export default function HomePage() {
+const HomePage = () => {
   const [moviesList, updateMovieList] = useState(Constants.MOVIES);
   const [isMovieSelected, selectedMovieId] = useState(0);
 
@@ -35,4 +36,22 @@ export default function HomePage() {
       <Footer/>
     </div>
   )
-}
+};
+
+
+HomePage.getInitialProps = async () => {
+  const response = await axios.get('http://localhost:4000/movies', {
+    params: {
+      limit: 9,
+      sortOrder: 'asc',
+      sortBy: 'release_date',
+      filter: '',
+      search: '',
+      searchBy: 'title'
+    }
+  });
+  return {movies: response.data}
+};
+
+
+export default HomePage;
