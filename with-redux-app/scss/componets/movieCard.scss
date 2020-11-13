@@ -1,0 +1,143 @@
+.movie-card {
+  margin: 25px 0;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+
+    &__img {
+      box-shadow: 0 0 10px rgba($color-light, 0.7);
+    }
+
+    &__title-wrap {
+      opacity: 0.9;
+    }
+  }
+
+  &__full-descrp {
+    display: none;
+  }
+
+  &__runtime {
+    display: none;
+  }
+
+  &__rating {
+    display: none;
+  }
+
+  &__img {
+    width: 300px;
+    height: 450px;
+    min-width: 300px;
+    min-height: 450px;
+    box-shadow: 0 0 10px rgba($color-light, 0.2);
+    background-image: url("https://sun9-42.userapi.com/uXBD6XlEiPOgjLuANDAgoNBdit32iwaOLn83yQ/4mjxKmNL1Fc.jpg");
+    background-position: center;
+    background-size: cover;
+
+    @include for-tablet-landscape-up {
+      width: 350px;
+      height: 500px;
+    }
+  }
+
+  &__info {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__title-wrap {
+    opacity: 0.6;
+  }
+
+  &__descrp {
+    opacity: 0.4;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: 100;
+    margin-bottom: 10px;
+    max-width: 300px;
+
+    @include for-tablet-portrait-up {
+      font-size: 2.2rem;
+    }
+
+    @include for-desktop-up {
+      font-size: 2.6rem;
+    }
+  }
+
+  &__year {
+    opacity: 0.4;
+    display: inline-block;
+    border: 1px solid rgba($color-light,  0.4);
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    .menu__item {
+      display: flex;
+    }
+  }
+
+  .dropdown-content {
+    padding: 20px 0 15px;
+
+    .button-close {
+      right: 15px;
+      top: 10px;
+      width: 17px;
+      height: 17px;
+
+      &:after,
+      &:before {
+        height: 17px;
+      }
+    }
+
+    &__item {
+      &:hover {
+        background-color: $color-pink;
+      }
+
+      &_extra {
+        font-size: 1.8rem;
+        color: $color-light;
+      }
+    }
+  }
+}
+
+.menu__item {
+  display: none;
+  width: 46px;
+  height: 47px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: $color-grey;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+
+  &:hover {
+    background-color: $color-grey-light;
+  }
+
+  .circle {
+    width: 5px;
+    height: 5px;
+    margin: 3px;
+    background: $color-light;
+    border-radius: 50%;
+    display: block;
+  }
+}
