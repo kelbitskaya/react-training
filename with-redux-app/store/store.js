@@ -7,5 +7,10 @@ import {createWrapper} from 'next-redux-wrapper';
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 export default store;
 
-const makeStore = () => store;
+
+const createStoreWithThunkMiddleware = applyMiddleware(thunk)(createStore);
+
+const makeStore = function (initialState) {
+  return createStoreWithThunkMiddleware(rootReducer, initialState);
+};
 export const wrapper = createWrapper(makeStore, {debug: true});
