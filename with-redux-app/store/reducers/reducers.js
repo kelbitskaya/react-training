@@ -4,14 +4,17 @@ import {
   FETCH_MOVIES_LIST_FAILURE,
   CHANGE_MOVIES_LIST,
   UPDATE_MOVIE,
-} from "../actions/actionTypes"
+} from "../actions/actionTypes";
+
+import {HYDRATE} from 'next-redux-wrapper';
+
 
 const initialState = {
   loading: false,
   movies: [],
   error: '',
   sortingType: 'release_date',
-  filteringType: 'all',
+  filteringType: 'all2334',
   currentMovie: null
 };
 
@@ -48,6 +51,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         currentMovie: action.payload,
+      };
+    case HYDRATE:
+      return {
+        ...state,
+        movies: action.payload,
       };
     default:
       return state;

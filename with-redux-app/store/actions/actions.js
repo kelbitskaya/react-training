@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as types from './actionTypes';
-import store from '../store';
 
 export const fetchMoviesRequest = () => {
   return {
@@ -26,7 +25,7 @@ export const fetchMovies = (sortBy, filter, title) => {
   return function (dispatch) {
     dispatch(fetchMoviesRequest());
 
-    axios.get('http://localhost:4000/movies', {
+    return axios.get('http://localhost:4000/movies', {
       params: {
         limit: 9,
         sortOrder: 'asc',
@@ -37,7 +36,6 @@ export const fetchMovies = (sortBy, filter, title) => {
       }
     })
       .then(response => {
-        console.info(response);
         dispatch(fetchMoviesSuccess(response.data));
       })
       .catch(error => {
@@ -46,6 +44,16 @@ export const fetchMovies = (sortBy, filter, title) => {
   }
 };
 
+// export const fetchDefaultMovies = () => async (dispatch) => {
+//   const response = await axios.get('http://localhost:4000/movies');
+//   dispatch(fetchMoviesSuccess(response.data));
+// };
+
+// export function fetchDefaultMovies() {
+//   return  dispatch => axios.get('http://localhost:4000/movies')
+//     .then(response => dispatch(fetchMoviesSuccess(response.data)));
+//
+// }
 export const deleteMovie = (id, searchType) => async dispatch => {
   try {
     await axios.delete(`http://localhost:4000/movies/${id}`);

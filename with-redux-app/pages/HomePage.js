@@ -1,10 +1,10 @@
 import React, {useState, useCallback} from 'react';
-import axios from "axios";
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import MovieList from '../components/movieList/MovieList';
 import Filters from '../components/filter/Filters';
 import Constants from '../components/constants';
+import {fetchMovies} from "../store/actions/actions";
 
 const HomePage = () => {
   const [moviesList, updateMovieList] = useState(Constants.MOVIES);
@@ -39,18 +39,10 @@ const HomePage = () => {
 };
 
 
-HomePage.getInitialProps = async () => {
-  const response = await axios.get('http://localhost:4000/movies', {
-    params: {
-      limit: 9,
-      sortOrder: 'asc',
-      sortBy: 'release_date',
-      filter: '',
-      search: '',
-      searchBy: 'title'
-    }
-  });
-  return {movies: response.data}
+HomePage.getInitialProps = async (ctx, { store }) => {
+  await store.dispatch(fetchMovies());
+  const movies = await store.getState().movies;
+  return movies.data;
 };
 
 
